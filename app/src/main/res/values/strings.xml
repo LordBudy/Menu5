@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu">MENU FRAGMENT</string>
+    <string name="menu_mini">MENU MINI FRAGMENT</string>
+    <string name="basket">BASKET FRAGMENT</string>
+    <string name="account">ACCOUNT FRAGMENT</string>
+    <string name="search">SEARCH FRAGMENT</string>
+    <string name="info">Info</string>
+    <string name="avatar">TODO</string>
+</resources>

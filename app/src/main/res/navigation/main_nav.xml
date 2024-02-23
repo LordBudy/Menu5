@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/home_page">
+
+    <fragment
+        android:id="@+id/home_page"
+        android:name="com.example.menu.fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_page_to_menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_home_page_to_search"
+            app:destination="@id/search" />
+        <action
+            android:id="@+id/action_home_page_to_account"
+            app:destination="@id/account" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.menu.fragments.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_menu"
+            app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.menu.fragments.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menu_to_menu_mini"
+            app:destination="@id/menu_mini" />
+    </fragment>
+    <fragment
+        android:id="@+id/account"
+        android:name="com.example.menu.fragments.Account"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_account_to_home_page"
+            app:destination="@id/home_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_mini"
+        android:name="com.example.menu.fragments.Menu_mini"
+        android:label="fragment_menu_mini"
+        tools:layout="@layout/fragment_menu_mini" >
+        <action
+            android:id="@+id/action_menu_mini_to_basket"
+            app:destination="@id/basket" />
+    </fragment>
+    <fragment
+        android:id="@+id/basket"
+        android:name="com.example.menu.fragments.Basket"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" >
+        <action
+            android:id="@+id/action_basket_to_menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_basket_to_home_page"
+            app:destination="@id/home_page" />
+    </fragment>
+</navigation>
