@@ -6,17 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.menu.R
+import com.example.menu.databinding.FragmentMenuMiniBinding
 
 
 class Menu_mini : Fragment() {
 
-
+lateinit var binding: FragmentMenuMiniBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu_mini, container, false)
+        binding = FragmentMenuMiniBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
 

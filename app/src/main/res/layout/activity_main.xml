@@ -34,7 +34,7 @@
         tools:srcCompat="@drawable/icon" />
 
     <fragment
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/Container_frag"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

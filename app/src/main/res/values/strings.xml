@@ -9,4 +9,6 @@
     <string name="search">SEARCH FRAGMENT</string>
     <string name="info">Info</string>
     <string name="avatar">TODO</string>
+    <string name="home_">HOME FRAGMENT</string>
+    <string name="Cat_Pekarny">пекарни и кондитерские</string>
 </resources>
