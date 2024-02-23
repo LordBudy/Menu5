@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.Dialog">
+        <!-- Стиль для текста в панели действий -->
+        <item name="android:textColorPrimary">@color/black</item>
+
+        <!-- Фон панели действий -->
+        <item name="android:background">@color/white</item>
+
+        <!-- Стиль для текста в основном контенте -->
+        <item name="android:textColor">@android:color/black</item>
+
+        <!-- Фон основного контента -->
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- Другие настройки стиля -->
+        <!-- Стиль для кнопок -->
+        <item name="android:buttonStyle">@style/ClassicButtonStyle</item>
+    </style>
+
+    <!-- Определение классического стиля кнопок -->
+    <style name="ClassicButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/black</item>
+        <!-- Добавьте свои настройки кнопки, если нужно -->
+    </style>
+
+
+    <color name="colorPrimary">#B8251A</color>
+    <color name="colorPrimaryDark">#1E2E9C</color>
+    <color name="colorAccent">#12B0C9</color>
+</resources>

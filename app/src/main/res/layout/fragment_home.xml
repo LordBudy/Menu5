@@ -8,16 +8,52 @@
     app:layout_anchorGravity="top|left"
     tools:context=".fragments.Home">
 
-    <Button
-        android:id="@+id/Cat_Pecarny"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="top|left"
-        android:text="ПЕКАРНИ И КОНДИТЕРСКИЕ"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/Cat_Pekarny"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="top|left"
+            android:text="@string/Cat_Pekarny"
+            android:textSize="16sp" />
+        <Button
+            android:id="@+id/Cat_Fasfud"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="top|left"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/fasfud" />
+        <Button
+            android:id="@+id/Cat_Aziat"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="top|left"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/aziat" />
+        <Button
+            android:id="@+id/Cat_Supi"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:gravity="top|left"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/supi" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
