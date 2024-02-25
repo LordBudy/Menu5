@@ -42,7 +42,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_view"
+        app:layout_constraintBottom_toTopOf="@+id/bNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,19 +52,13 @@
         tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/btn_view"
+        android:id="@+id/bNav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
         app:backgroundTint="@color/white"
-        app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_btn"
-        tools:ignore="VisualLintBottomNav" />
-
+        app:menu="@menu/nav_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

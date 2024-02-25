@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Menu</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu">MENU FRAGMENT</string>
     <string name="menu_mini">MENU MINI FRAGMENT</string>
     <string name="basket">BASKET FRAGMENT</string>
@@ -18,4 +16,27 @@
     <string name="btn_basket">Basket</string>
     <string name="btn_home">Home</string>
     <string name="btn_search">Search</string>
+    <string name="brn_scrol">brn_scrol_menu</string>
+    <string name="все_меню">Все меню</string>
+    <string name="с_мясом">с мясом</string>
+    <string name="с_рисом">с рисом</string>
+    <string name="с_рыбой">с рыбой</string>
+    <string name="салаты">салаты</string>
+    <string name="Блюдо">Блюдо</string>
+    <string name="Блины">Блины</string>
+    <string name="Пельмени">Пельмени</string>
+    <string name="Шницель">Шницель</string>
+    <string name="Рататуй">Рататуй</string>
+    <string name="Паэлья">Паэлья</string>
+    <string name="Фетучинни_с_грибами">Фетучинни с грибами</string>
+    <string name="Рулеты_из_ветчины">Рулеты из ветчины</string>
+    <string name="Зеленый_салат">Зеленый салат</string>
+    <string name="Тортелини">Тортелини</string>
+    <string name="Рыба_с_овощами_и_рисом">Рыба с овощами и рисом</string>
+    <string name="Салат_по_восточному">Салат по восточному</string>
+    <string name="Рис_с_овощами">Рис с овощами</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

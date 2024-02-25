@@ -27,10 +27,11 @@
             android:background="#FADBB5"
             android:contentDescription="@string/Cat_Pekarny"
             android:gravity="clip_vertical"
+            android:padding="7dp"
             android:text="@string/Cat_Pekarny"
             android:textStyle="italic|bold"
             tools:ignore="ImageContrastCheck"
-            tools:src="@tools:sample/backgrounds/scenic"/>
+            tools:src="@tools:sample/backgrounds/scenic" />
 
         <Button
             android:id="@+id/catFasfud"
@@ -41,6 +42,7 @@
             android:layout_marginRight="8dp"
             android:background="#FDFA9B9B"
             android:gravity="clip_vertical"
+            android:padding="7dp"
             android:text="@string/fasfud"
             android:textStyle="italic|bold"
             tools:ignore="VisualLintButtonSize" />
@@ -54,6 +56,7 @@
             android:layout_marginRight="8dp"
             android:background="#70E0ED"
             android:gravity="clip_vertical"
+            android:padding="7dp"
             android:text="@string/aziat"
             android:textStyle="italic|bold"
             tools:ignore="VisualLintButtonSize" />
@@ -67,6 +70,7 @@
             android:layout_marginRight="8dp"
             android:background="#C0E4A3"
             android:gravity="clip_vertical"
+            android:padding="7dp"
             android:text="@string/supi"
             android:textStyle="italic|bold"
             tools:ignore="VisualLintButtonSize" />
