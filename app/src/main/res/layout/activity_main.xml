@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/white"
+    tools:context=".MainActivity"
+    tools:ignore="VisualLintButtonSize">
 
     <TextView
         android:id="@+id/Info"
@@ -39,15 +41,30 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="70dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Info"
         app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/main_nav" />
+        app:navGraph="@navigation/main_nav"
+        tools:ignore="FragmentTagUsage" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btn_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        app:backgroundTint="@color/white"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_btn"
+        tools:ignore="VisualLintBottomNav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

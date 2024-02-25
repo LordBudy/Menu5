@@ -18,42 +18,59 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/Cat_Pekarny"
+            android:id="@+id/catPekarny"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="top|left"
+            android:layout_marginRight="8dp"
+            android:background="#FADBB5"
+            android:contentDescription="@string/Cat_Pekarny"
+            android:gravity="clip_vertical"
             android:text="@string/Cat_Pekarny"
-            android:textSize="16sp" />
+            android:textStyle="italic|bold"
+            tools:ignore="ImageContrastCheck"
+            tools:src="@tools:sample/backgrounds/scenic"/>
+
         <Button
-            android:id="@+id/Cat_Fasfud"
+            android:id="@+id/catFasfud"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:gravity="top|left"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/fasfud" />
+            android:layout_marginRight="8dp"
+            android:background="#FDFA9B9B"
+            android:gravity="clip_vertical"
+            android:text="@string/fasfud"
+            android:textStyle="italic|bold"
+            tools:ignore="VisualLintButtonSize" />
+
         <Button
-            android:id="@+id/Cat_Aziat"
+            android:id="@+id/catAziat"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:gravity="top|left"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/aziat" />
+            android:layout_marginRight="8dp"
+            android:background="#70E0ED"
+            android:gravity="clip_vertical"
+            android:text="@string/aziat"
+            android:textStyle="italic|bold"
+            tools:ignore="VisualLintButtonSize" />
+
         <Button
-            android:id="@+id/Cat_Supi"
+            android:id="@+id/catSupi"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:gravity="top|left"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/supi" />
+            android:layout_marginRight="8dp"
+            android:background="#C0E4A3"
+            android:gravity="clip_vertical"
+            android:text="@string/supi"
+            android:textStyle="italic|bold"
+            tools:ignore="VisualLintButtonSize" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

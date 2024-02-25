@@ -2,5 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bej">#F7BB70</color>
+    <color name="rose">#FDF37474</color>
+    <color name="bej">#D6B080</color>
+    <color name="green">#019708</color>
+    <color name="Purple">#8522BB</color>
+    <color name="aqua">#2ED3E6</color>
+    <color name="boloto">#809C69</color>
+    <color name="colorPrimary">#B8251A</color>
+    <color name="colorPrimaryDark">#1E2E9C</color>
+    <color name="colorAccent">#12B0C9</color>
 </resources>

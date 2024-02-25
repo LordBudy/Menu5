@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         MAIN = this
     navController = Navigation.findNavController(this,R.id.Container_frag)
+
     }
 
 }

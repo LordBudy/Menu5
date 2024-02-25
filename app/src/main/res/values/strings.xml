@@ -14,4 +14,8 @@
     <string name="fasfud">ФАСФУД</string>
     <string name="aziat">Азиатская кухня</string>
     <string name="supi">СУПЫ</string>
+    <string name="btn_account">Account</string>
+    <string name="btn_basket">Basket</string>
+    <string name="btn_home">Home</string>
+    <string name="btn_search">Search</string>
 </resources>
