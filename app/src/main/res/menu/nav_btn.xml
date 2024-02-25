@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btn_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/btn_home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/btn_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/btn_search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/btn_basket"
+        android:icon="@drawable/ic_basket"
+        android:title="@string/btn_basket"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/btn_account"
+        android:icon="@drawable/ic_account"
+        android:title="@string/btn_account"
+        app:showAsAction="ifRoom" />
+</menu>
