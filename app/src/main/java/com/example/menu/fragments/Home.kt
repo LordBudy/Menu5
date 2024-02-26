@@ -13,16 +13,14 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.menu.databinding.FragmentHomeBinding
 
 
-
 class Home : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -99,9 +97,12 @@ class Home : Fragment() {
                     binding.catSupi.background = placeholder
                 }
             })
-
     }
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = Home()
+    }
 }
 
 

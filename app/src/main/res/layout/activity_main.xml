@@ -40,15 +40,11 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bNav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Info"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/main_nav"
         tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -59,6 +55,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_btn" />
+        app:menu="@menu/nav_btn"
+        tools:ignore="VisualLintBottomNav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

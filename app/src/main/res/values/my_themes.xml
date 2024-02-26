@@ -4,9 +4,9 @@
         <!-- Стиль для текста в панели действий -->
 
 
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/oranj</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/Purple</item>
 
 
         <item name="colorSecondary">@color/white</item>
