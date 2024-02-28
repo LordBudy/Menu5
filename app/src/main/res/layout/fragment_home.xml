@@ -5,10 +5,10 @@
     android:id="@+id/Category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_anchorGravity="top|left"
     tools:context=".fragments.Home">
 
     <LinearLayout
+        android:id="@+id/Category1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -30,7 +30,7 @@
             android:padding="7dp"
             android:text="@string/Cat_Pekarny"
             android:textStyle="italic|bold"
-            tools:ignore="ImageContrastCheck"
+            tools:ignore="VisualLintButtonSize"
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <Button

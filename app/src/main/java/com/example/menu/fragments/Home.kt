@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -22,16 +23,13 @@ class Home : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Находим кнопку в макете
-        binding.catPekarny
-        binding.catFasfud
-        binding.catAziat
-        binding.catSupi
+        setButtonListener()
 
         Glide.with(this)
             .load(
@@ -98,6 +96,27 @@ class Home : Fragment() {
                 }
             })
     }
+
+    //устанавливаем слушатель кнопки catPekarny и с помощью FragmentManager вызываем нудный фрагмент
+    private fun setButtonListener() {
+        binding.catPekarny.setOnClickListener {
+            //во фрагмент менеджер передаем два параметра новый фрагмент и активити ,но так как
+            //как передаем из фрагмента то указываем не this а вызываем requireActivity()
+            // и явно указываем какое это активити as AppCompatActivity
+            FragmentManager.setFragment(Menu.newInstance(), requireActivity() as AppCompatActivity)
+        }
+        binding.catFasfud.setOnClickListener {
+            FragmentManager.setFragment(Menu.newInstance(), requireActivity() as AppCompatActivity)
+        }
+        binding.catAziat.setOnClickListener {
+            FragmentManager.setFragment(Menu.newInstance(), requireActivity() as AppCompatActivity)
+        }
+        binding.catSupi.setOnClickListener {
+            FragmentManager.setFragment(Menu.newInstance(), requireActivity() as AppCompatActivity)
+        }
+
+    }
+
 
     companion object {
         @JvmStatic

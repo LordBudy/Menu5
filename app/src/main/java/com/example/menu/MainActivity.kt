@@ -3,12 +3,12 @@ package com.example.menu
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.example.menu.databinding.ActivityMainBinding
 import com.example.menu.fragments.Account
 import com.example.menu.fragments.Basket
 import com.example.menu.fragments.FragmentManager
 import com.example.menu.fragments.Home
+import com.example.menu.fragments.Menu
 import com.example.menu.fragments.Search
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         setBottomNavListener()
+
     }
 
     private fun setBottomNavListener() {

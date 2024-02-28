@@ -14,9 +14,12 @@ lateinit var binding: FragmentMenuBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
-
+    companion object {
+        @JvmStatic
+        fun newInstance() = Menu()
+    }
 }
