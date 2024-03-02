@@ -19,6 +19,13 @@ lateinit var binding: FragmentSearchBinding
         binding = FragmentSearchBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Устанавливаем название фрагмента с использованием менеджера
+        FragmentManagerText.onFragmentTitleChanged("Поиск по названию")
+
+    }
     companion object {
         @JvmStatic
         fun newInstance() = Search()

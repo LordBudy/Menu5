@@ -94,7 +94,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/image1"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="5dp"
@@ -102,7 +102,7 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/image2"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginStart="5dp"
@@ -112,7 +112,7 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/image3"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="5dp"
@@ -128,295 +128,368 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/TextImage2"
+                    android:id="@+id/TextImage1"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рис с овощами" />
+                    android:text="@string/Рис_с_овощами"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
-                    android:id="@+id/TextImage3"
+                    android:id="@+id/TextImage2"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Салат по восточному" />
+                    android:text="@string/Салат_по_восточному" />
+
+                <TextView
+                    android:id="@+id/TextImage3"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/Рыба_с_овощами_и_рисом"
+                    tools:ignore="TextSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image4"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image5"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image6"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/TextImage4"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рыба с овощами и рисом" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    android:text="@string/Тортелини" />
 
                 <TextView
                     android:id="@+id/TextImage5"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Тортелини" />
+                    android:text="@string/Зеленый_салат"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/TextImage6"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Зеленый салат" />
+                    android:text="@string/Рулеты_из_ветчины" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image7"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image8"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image9"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/TextImage7"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рулеты из ветчины" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    android:text="@string/Фетучинни_с_грибами"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/TextImage8"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Фетучинни с грибами" />
+                    android:text="@string/Паэлья_из_утки"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/TextImage9"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Паэлья" />
+                    android:text="@string/Рататуй" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image10"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image11"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image12"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/TextImage10"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рататуй" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    android:text="@string/Шницель" />
 
                 <TextView
                     android:id="@+id/TextImage11"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Шницель" />
+                    android:text="@string/Пельмени" />
 
                 <TextView
                     android:id="@+id/TextImage12"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Пельмени" />
+                    android:text="@string/Блины" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image13"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image14"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image15"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/TextImage13"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Блины" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="4dp"
-                    android:contentDescription="@string/Блюдо"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    android:text="@string/Салат_цезарь"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/TextImage14"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="  Рис с овощами" />
+                    android:text="@string/Салат_королевский_с_говядиной"
+                    tools:ignore="TextSizeCheck" />
 
                 <TextView
                     android:id="@+id/TextImage15"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Рис с овощами" />
+                    android:text="@string/Мясо_ассорти_в_соусе"
+                    tools:ignore="TextSizeCheck" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/image16"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image17"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+                <ImageView
+                    android:id="@+id/image18"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/Блюдо"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/TextImage16"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Рис с овощами" />
+                    android:text="Лагман удон" />
+
+                <TextView
+                    android:id="@+id/TextImage17"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="center"
+                    android:text="Фунчоза с креветками и овощами" />
+
+                <TextView
+                    android:id="@+id/TextImage18"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Суп рамен со свининой" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -424,7 +497,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView17"
+                    android:id="@+id/image19"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="5dp"
@@ -432,7 +505,7 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
-                    android:id="@+id/imageView18"
+                    android:id="@+id/image20"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginStart="4dp"
@@ -442,7 +515,7 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
-                    android:id="@+id/imageView19"
+                    android:id="@+id/image21"
                     android:layout_width="115dp"
                     android:layout_height="115dp"
                     android:layout_marginTop="5dp"
@@ -451,9 +524,7 @@
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

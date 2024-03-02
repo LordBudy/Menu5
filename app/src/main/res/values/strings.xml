@@ -37,6 +37,16 @@
     <string name="Рис_с_овощами">Рис с овощами</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Салат_цезарь">Салат цезарь</string>
+    <string name="Салат_королевский_с_говядиной">Салат королевский с говядиной</string>
+    <string name="Мясо_ассорти_в_соусе">Мясо ассорти в соусе</string>
+    <string name="Паэлья_из_утки">Паэлья из утки</string>
+    <string name="name_dish">Name_dish</string>
+    <string name="dish">Dish</string>
+    <string name="price">Price</string>
+    <string name="description">description</string>
+    <string name="Weight">Weight</string>
+    <string name="Добавить_в_корзину">Добавить в корзину</string>
 
 
 </resources>

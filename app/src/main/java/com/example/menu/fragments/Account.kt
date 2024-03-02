@@ -21,6 +21,15 @@ lateinit var binding: FragmentAccountBinding
         binding = FragmentAccountBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Устанавливаем название фрагмента с использованием менеджера
+        FragmentManagerText.onFragmentTitleChanged("Аккаунт")
+
+
+
+    }
     companion object {
         @JvmStatic
         fun newInstance() = Account()

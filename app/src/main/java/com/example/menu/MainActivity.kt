@@ -7,11 +7,12 @@ import com.example.menu.databinding.ActivityMainBinding
 import com.example.menu.fragments.Account
 import com.example.menu.fragments.Basket
 import com.example.menu.fragments.FragmentManager
+import com.example.menu.fragments.FragmentManagerText
 import com.example.menu.fragments.Home
-import com.example.menu.fragments.Menu
 import com.example.menu.fragments.Search
 
-class MainActivity : AppCompatActivity() {
+@Suppress("DEPRECATION")
+class MainActivity : AppCompatActivity(), FragmentTitleListener {
     //сперва обьявляем переменную
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         // указываем что он главный и получаем доступ ко всем id
         setContentView(binding.root)
+//инициализируем фрагмент менеджер для заголовков
+        FragmentManagerText.registerFragmentTitleListener(this)
 
         // Проверяем, что savedInstanceState равно null, чтобы избежать пересоздания фрагмента при повороте экрана
         if (savedInstanceState == null) {
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.btn_home -> {
                     FragmentManager.setFragment(Home.newInstance(), this)
+
                 }
 
                 R.id.btn_search -> {
@@ -57,6 +61,20 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    // Переопределение метода для обработки нажатия кнопки "назад"
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onFragmentTitleChanged(title: String) {
+        binding.catInfo.text = title
     }
 
 

@@ -29,6 +29,10 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        // Устанавливаем название фрагмента с использованием менеджера
+        FragmentManagerText.onFragmentTitleChanged("Категории")
+
         setButtonListener()
 
         Glide.with(this)
@@ -97,11 +101,11 @@ class Home : Fragment() {
             })
     }
 
-    //устанавливаем слушатель кнопки catPekarny и с помощью FragmentManager вызываем нудный фрагмент
+    //устанавливаем слушатель кнопки catPekarny и с помощью FragmentManager вызываем нужный фрагмент
     private fun setButtonListener() {
         binding.catPekarny.setOnClickListener {
-            //во фрагмент менеджер передаем два параметра новый фрагмент и активити ,но так как
-            //как передаем из фрагмента то указываем не this а вызываем requireActivity()
+            //в фрагмент менеджер передаем два параметра новый фрагмент и активити ,но так как
+            // вызываем из фрагмента то указываем второй параметр не this,а requireActivity()
             // и явно указываем какое это активити as AppCompatActivity
             FragmentManager.setFragment(Menu.newInstance(), requireActivity() as AppCompatActivity)
         }
