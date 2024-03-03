@@ -47,6 +47,10 @@
     <string name="description">description</string>
     <string name="Weight">Weight</string>
     <string name="Добавить_в_корзину">Добавить в корзину</string>
+    <string name="плюс">+</string>
+    <string name="минус">-</string>
+    <string name="количество">0</string>
+    <string name="Скрол_корзина">Скрол корзина</string>
 
 
 </resources>

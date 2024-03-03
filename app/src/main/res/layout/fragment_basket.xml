@@ -4,17 +4,932 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     tools:context=".fragments.Basket">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Корзина"
-        android:textSize="20sp"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/Скрол_корзина"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage1"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish1"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage1"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish1"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish1"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton1"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count1"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage2"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish2"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage2"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish2"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish2"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish2"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton2"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count2"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage3"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish3"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage3"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish3"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish3"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish3"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton3"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count3"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage4"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage4"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish4"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage4"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish4"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish4"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish4"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton4"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count4"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage5"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage5"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish5"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage5"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish5"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish5"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish5"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton5"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count5"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage6"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage6"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish6"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage6"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish6"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish6"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton6"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish6"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton6"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton6"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count6"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage7"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage7"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish7"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage7"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish7"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish7"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton7"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish7"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton7"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton7"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count7"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage8"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage8"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish8"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage8"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish8"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish8"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton8"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish8"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton8"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton8"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count8"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage9"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage9"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish9"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage9"
+                        android:text="@string/price"
+                        android:textSize="16sp"
+                        tools:ignore="TooManyViews" />
+
+
+                    <TextView
+                        android:id="@+id/weight9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish9"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish9"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton9"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish9"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/Count9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton9"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton9"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/Count9"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/basketImage10"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/name_dish10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toEndOf="@id/basketImage10"
+                        android:text="@string/name_dish"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/price_dish10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish10"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@id/basketImage10"
+                        android:text="@string/price"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/weight10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name_dish10"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/price_dish10"
+                        android:text="@string/Weight"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/plusButton10"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toEndOf="@id/price_dish10"
+                        android:text="@string/плюс"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <TextView
+                        android:id="@+id/itemCount10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_toEndOf="@id/plusButton10"
+                        android:text="@string/количество"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/minusButton10"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toEndOf="@id/itemCount10"
+                        android:text="@string/минус"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

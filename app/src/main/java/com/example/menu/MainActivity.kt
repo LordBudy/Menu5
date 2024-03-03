@@ -1,5 +1,6 @@
 package com.example.menu
 
+import android.media.Image
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -9,10 +10,11 @@ import com.example.menu.fragments.Basket
 import com.example.menu.fragments.FragmentManager
 import com.example.menu.fragments.FragmentManagerText
 import com.example.menu.fragments.Home
+import com.example.menu.fragments.Menu_mini
 import com.example.menu.fragments.Search
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), FragmentTitleListener {
+class MainActivity : AppCompatActivity(), FragmentTitleListener,ImageClickListener,BasketImageClickListener {
     //сперва обьявляем переменную
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
@@ -28,10 +30,8 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener {
 
         // Проверяем, что savedInstanceState равно null, чтобы избежать пересоздания фрагмента при повороте экрана
         if (savedInstanceState == null) {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction
+           supportFragmentManager.beginTransaction()
                 .replace(R.id.Container_frag, Home())
-            fragmentTransaction
                 .commit()
         }
         setBottomNavListener()
@@ -77,5 +77,54 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener {
         binding.catInfo.text = title
     }
 
+    override fun onImageClicked(
+        urlImage: String,
+        nameDish: String,
+        price: String,
+        weight: String,
+        description: String
+    ) {
+        // Показываем второй фрагмент с переданным URL
+        val menuMini = Menu_mini()
+
+        // Передаем URL второму фрагменту с использованием аргументов
+        val args = Bundle().apply {
+            putString("url", urlImage)
+            putString("name", nameDish)
+            putString("price", price)
+            putString("weight", weight)
+            putString("description", description)
+        }
+        menuMini.arguments = args
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.Container_frag, menuMini)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onImageAtBasketClicked(
+        urlImage: String,
+        nameDish: String,
+        price: String,
+        weight: String
+    ) {
+        // Показываем Basket фрагмент с переданными данными
+        val basket = Basket()
+
+        // Передаем значения Basket фрагменту с использованием аргументов
+        val args = Bundle().apply {
+            putString("urlBasket", urlImage)
+            putString("nameBasket", nameDish)
+            putString("priceBasket", price)
+            putString("weightBasket", weight)
+        }
+        basket.arguments = args
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.Container_frag, basket)
+            .addToBackStack(null)
+            .commit()
+    }
 
 }
