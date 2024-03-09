@@ -51,6 +51,9 @@
     <string name="минус">-</string>
     <string name="количество">0</string>
     <string name="Скрол_корзина">Скрол корзина</string>
+    <string name="Лагман_удон">Лагман удон</string>
+    <string name="Фунчоза">Фунчоза с креветками и овощами</string>
+    <string name="Суп_рамен">Суп рамен со свининой</string>
 
 
 </resources>

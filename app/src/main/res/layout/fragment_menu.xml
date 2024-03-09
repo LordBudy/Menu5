@@ -378,6 +378,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="4dp"
                     android:contentDescription="@string/Блюдо"
+                    tools:ignore="ImageContrastCheck"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <ImageView
@@ -471,7 +472,7 @@
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Лагман удон" />
+                    android:text="@string/Лагман_удон" />
 
                 <TextView
                     android:id="@+id/TextImage17"
@@ -480,14 +481,14 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="center"
-                    android:text="Фунчоза с креветками и овощами" />
+                    android:text="@string/Фунчоза" />
 
                 <TextView
                     android:id="@+id/TextImage18"
                     android:layout_width="115dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Суп рамен со свининой" />
+                    android:text="@string/Суп_рамен" />
 
             </LinearLayout>
             <LinearLayout
