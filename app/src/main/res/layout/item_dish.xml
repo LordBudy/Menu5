@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/basketImage1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/name_dish1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@id/basketImage1"
+        android:text="@string/name_dish"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/price_dish1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_dish1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/basketImage1"
+        android:text="@string/price"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/weight1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_dish1"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/price_dish1"
+        android:text="@string/Weight"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/plusButton1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@id/price_dish1"
+        android:text="@string/плюс"
+         />
+
+    <TextView
+        android:id="@+id/Count1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@id/plusButton1"
+        android:text="@string/количество"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/minusButton1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/Count1"
+        android:text="@string/минус"
+         />
+
+
+</RelativeLayout>
