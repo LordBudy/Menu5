@@ -1,23 +1,25 @@
-package com.example.menu
+package com.example.menu.activitis
 
-import android.media.Image
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
+import com.example.menu.R
 import com.example.menu.databinding.ActivityMainBinding
 import com.example.menu.fragments.Account
 import com.example.menu.fragments.Basket
-import com.example.menu.fragments.FragmentManager
-import com.example.menu.fragments.FragmentManagerText
 import com.example.menu.fragments.Home
 import com.example.menu.fragments.Menu_mini
 import com.example.menu.fragments.Search
+import com.example.menu.interfaces.BasketImageClickListener
+import com.example.menu.interfaces.FragmentTitleListener
+import com.example.menu.interfaces.ImageClickListener
+import com.example.menu.managers.FragmentManager
+import com.example.menu.managers.FragmentManagerText
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), FragmentTitleListener,ImageClickListener,BasketImageClickListener {
+class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListener,
+    BasketImageClickListener {
     //сперва обьявляем переменную
     lateinit var binding: ActivityMainBinding
-    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

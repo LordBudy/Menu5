@@ -1,11 +1,6 @@
-package com.example.menu.fragments
+package com.example.menu.managers
 
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.example.menu.FragmentTitleListener
-import com.example.menu.R
+import com.example.menu.interfaces.FragmentTitleListener
 
 object FragmentManagerText: FragmentTitleListener {
 

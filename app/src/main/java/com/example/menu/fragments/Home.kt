@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.menu.databinding.FragmentHomeBinding
+import com.example.menu.managers.FragmentManager
+import com.example.menu.managers.FragmentManagerText
 
 
 class Home : Fragment() {

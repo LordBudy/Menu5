@@ -1,4 +1,4 @@
-package com.example.menu.fragments
+package com.example.menu.managers
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

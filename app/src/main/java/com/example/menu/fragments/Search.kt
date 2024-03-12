@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.menu.databinding.FragmentSearchBinding
+import com.example.menu.managers.FragmentManagerText
 
 
 class Search : Fragment() {

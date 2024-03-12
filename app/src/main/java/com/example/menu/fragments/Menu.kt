@@ -6,10 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import com.example.menu.ImageClickListener
-import com.example.menu.R
+import com.example.menu.interfaces.ImageClickListener
 import com.example.menu.databinding.FragmentMenuBinding
+import com.example.menu.managers.FragmentManagerText
 import com.squareup.picasso.Picasso
 
 

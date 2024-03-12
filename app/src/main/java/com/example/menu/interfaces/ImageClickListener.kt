@@ -1,4 +1,4 @@
-package com.example.menu
+package com.example.menu.interfaces
 
 interface ImageClickListener {
     fun onImageClicked(urlImage: String,

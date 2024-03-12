@@ -1,80 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayoutDish"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
+
     <ImageView
-        android:id="@+id/basketImage1"
+        android:id="@+id/basketIm1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/image_Basket"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/name_dish1"
+        android:id="@+id/name_dish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
-        android:layout_toEndOf="@id/basketImage1"
+        android:layout_toEndOf="@id/basketIm1"
         android:text="@string/name_dish"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/price_dish1"
+        android:id="@+id/price_dish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name_dish1"
+        android:layout_below="@+id/name_dish"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@id/basketImage1"
+        android:layout_toEndOf="@id/basketIm1"
         android:text="@string/price"
         android:textSize="16sp" />
 
 
     <TextView
-        android:id="@+id/weight1"
+        android:id="@+id/weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name_dish1"
+        android:layout_below="@+id/name_dish"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/price_dish1"
+        android:layout_toEndOf="@+id/price_dish"
         android:text="@string/Weight"
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/plusButton1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/plusBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:layout_marginBottom="15dp"
-        android:layout_toEndOf="@id/price_dish1"
-        android:text="@string/плюс"
-         />
+        android:layout_toEndOf="@id/price_dish"
+        android:text="@string/плюс" />
 
     <TextView
-        android:id="@+id/Count1"
+        android:id="@+id/Count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="35dp"
-        android:layout_toEndOf="@id/plusButton1"
+        android:layout_marginTop="55dp"
+        android:layout_toEndOf="@id/plusBtn"
         android:text="@string/количество"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/minusButton1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/minusBtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_toEndOf="@id/Count1"
-        android:text="@string/минус"
-         />
+        android:layout_marginTop="45dp"
+        android:layout_toEndOf="@id/Count"
+        android:text="@string/минус" />
 
 
 </RelativeLayout>

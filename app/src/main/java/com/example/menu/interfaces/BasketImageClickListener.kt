@@ -1,4 +1,4 @@
-package com.example.menu
+package com.example.menu.interfaces
 
 interface BasketImageClickListener {
     fun onImageAtBasketClicked(urlImage: String,
