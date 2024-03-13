@@ -76,7 +76,7 @@ class Menu_mini : Fragment() {
                 name_dish = name.toString(),
                 price_dish = price.toString(),
                 weight_dish = weight.toString(),
-                quantity = 0
+                quantity = 1
             )
             // Вставьте данные в базу данных
             //здесь вызываем из базы данных функцию getDao а она подтягивает интерфейс ImageDao с его функциями
