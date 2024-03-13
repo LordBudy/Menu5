@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 
 
 @Suppress("DEPRECATION")
-class Basket : Fragment() {
+class Basket : Fragment(), Adapter.OnDeleteClickListener {
     lateinit var adapter: Adapter
     lateinit var binding: FragmentBasketBinding
     lateinit var db: MainDb
@@ -41,49 +41,51 @@ class Basket : Fragment() {
         // Устанавливаем название фрагмента с использованием менеджера
         FragmentManagerText.onFragmentTitleChanged("Корзина")
         // Инициализируем адаптер
-        adapter = Adapter()
+        // Передаем this в конструктор адаптера для установки слушателя
+        adapter = Adapter(this, dao)
         // Инициализируем RecyclerView
         init()
+        loadDishesFromDb()
+    }
+
 //--------------------------------------------------------------------------------------------------
-//при попытки доступа к базе данных на главном потоке,
+// при попытки доступа к базе данных на главном потоке,
 //может заблокировать пользовательский интерфейс на длительный период времени
 //Чтобы избежать это, используем корутины для
 // выполнения асинхронных операций базы данных в фоновом режиме.
 //--------------------------------------------------------------------------------------------------
+    fun loadDishesFromDb() {
         // Запускаем корутину для выполнения операций с базой данных
         viewLifecycleOwner.lifecycleScope.launch {
             // Получаем данные из базы данных асинхронно
             val dataFromDb = withContext(Dispatchers.IO) {
                 dao.getAllDish()
             }
-            // Передайте полученные данные в адаптер с помощью метода setData()
+            // Передаем полученные данные в адаптер с помощью метода setData()
             adapter.setData(dataFromDb)
         }
-
     }
-
+    //настраиваем RecyclerView
     private fun init() {
         binding.apply {
             rvBasket.layoutManager = LinearLayoutManager(requireContext())
             rvBasket.adapter = adapter
         }
     }
-    // Метод для удаления объекта из базы данных
+
+    // Метод обратного вызова для обработки нажатия на кнопку "Minus" в адаптере
+    override fun onDeleteClicked(position: Int) {
+        // Получаем удаляемый объект из списка и вызываем метод удаления из базы данных
+        val deletedDish = adapter.basketList[position]
+        deleteDishFromDb(deletedDish)
+    }
+
+    // Метод для удаления объекта из базы данных и обновления адаптера
     private fun deleteDishFromDb(dish: DishEntity) {
-        // Запускаем корутину для выполнения операции удаления асинхронно
         viewLifecycleOwner.lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                // Вызываем метод удаления из DAO
-                dao.deleteDish(dish)
-            }
+            dao.deleteDish(dish)
             // После удаления, обновляем список данных в адаптере
-            // Для этого, вам может потребоваться вызвать запрос на получение всех данных
-            // и передать их в setData метод адаптера
-            // Например:
-            val newData = withContext(Dispatchers.IO) {
-                dao.getAllDish()
-            }
-            adapter.setData(newData)
+            loadDishesFromDb()
         }
     }
 
@@ -92,4 +94,5 @@ class Basket : Fragment() {
         @JvmStatic
         fun newInstance() = Basket()
     }
+
 }

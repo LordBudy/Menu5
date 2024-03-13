@@ -7,11 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.menu.interfaces.BasketImageClickListener
 import com.example.menu.databinding.FragmentMenuMiniBinding
 import com.example.menu.db.Adapter
@@ -29,7 +25,6 @@ class Menu_mini : Fragment() {
     var price: String? = null
     var weight: String? = null
     lateinit var binding: FragmentMenuMiniBinding
-    private lateinit var adapter: Adapter
     lateinit var navController: NavController
     private lateinit var basketImageClickListener: BasketImageClickListener
 
@@ -70,8 +65,6 @@ class Menu_mini : Fragment() {
         binding.weight.text = weight
         binding.Description.text = description
 
-        adapter = Adapter()
-
         //создаем переменную и вызываем базу данных
         val db = MainDb.getDb(requireContext())
 
@@ -82,7 +75,8 @@ class Menu_mini : Fragment() {
                 url_dish = urlIm.toString(),
                 name_dish = name.toString(),
                 price_dish = price.toString(),
-                weight_dish = weight.toString()
+                weight_dish = weight.toString(),
+                quantity = 0
             )
             // Вставьте данные в базу данных
             //здесь вызываем из базы данных функцию getDao а она подтягивает интерфейс ImageDao с его функциями
@@ -98,9 +92,7 @@ class Menu_mini : Fragment() {
             )
         }
 
-
     }
-
 
     companion object {
         @JvmStatic
