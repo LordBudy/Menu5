@@ -25,7 +25,9 @@
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@id/basketIm1"
         android:text="@string/name_dish"
-        android:textSize="16sp" />
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/price_dish"
@@ -36,6 +38,7 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@id/basketIm1"
         android:text="@string/price"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
 
@@ -68,6 +71,7 @@
         android:layout_marginTop="55dp"
         android:layout_toEndOf="@id/plusBtn"
         android:text="@string/количество"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button
@@ -78,6 +82,16 @@
         android:layout_marginTop="45dp"
         android:layout_toEndOf="@id/Count"
         android:text="@string/минус" />
+
+    <TextView
+        android:id="@+id/count_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/price_dish"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/basketIm1"
+        android:text="@string/count_price" />
 
 
 </RelativeLayout>

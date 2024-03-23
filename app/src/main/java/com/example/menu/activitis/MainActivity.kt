@@ -1,7 +1,10 @@
 package com.example.menu.activitis
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation.findNavController
 import com.example.menu.R
 import com.example.menu.databinding.ActivityMainBinding
 import com.example.menu.fragments.Account
@@ -27,17 +30,32 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         binding = ActivityMainBinding.inflate(layoutInflater)
         // указываем что он главный и получаем доступ ко всем id
         setContentView(binding.root)
+
+
 //инициализируем фрагмент менеджер для заголовков
         FragmentManagerText.registerFragmentTitleListener(this)
 
         // Проверяем, что savedInstanceState равно null, чтобы избежать пересоздания фрагмента при повороте экрана
         if (savedInstanceState == null) {
-           supportFragmentManager.beginTransaction()
+            supportFragmentManager.beginTransaction()
                 .replace(R.id.Container_frag, Home())
                 .commit()
         }
         setBottomNavListener()
 
+    }
+
+    //обрабатываем нажатие кнопки backAtMenu переходиv на фрагмент Menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.backAtMenu -> {
+                // Возврат на фрагмент Menu при нажатии кнопки "назад"
+                FragmentManager.setFragment(com.example.menu.fragments.Menu.newInstance(), this)
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setBottomNavListener() {

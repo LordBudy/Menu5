@@ -55,6 +55,9 @@
     <string name="Фунчоза">Фунчоза с креветками и овощами</string>
     <string name="Суп_рамен">Суп рамен со свининой</string>
     <string name="image_Basket">ImageBasket</string>
+    <string name="count_price">count_price</string>
+    <string name="К_оплате">К оплате:</string>
+    <string name="назад_в_меню">back</string>
 
 
 </resources>

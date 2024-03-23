@@ -12,7 +12,7 @@ import com.example.menu.managers.FragmentManagerText
 import com.squareup.picasso.Picasso
 
 
-class Menu : Fragment() {
+class Menu : Fragment(){
     lateinit var binding: FragmentMenuBinding
     private lateinit var imageClickListener: ImageClickListener
     override fun onAttach(context: Context) {
@@ -44,8 +44,8 @@ class Menu : Fragment() {
             .load(ImageUrl1)
             .into(binding.image1)
        val name1 = "Рис с овощами"
-       val price1 = "450 р."
-       val weight1 = "560.0 г."
+       val price1 = "450"
+       val weight1 = ".р 560.0г."
        val descroption1 = "В китайской кухне рис с овощами готовят " +
                 "с добавлением грибов,бамбуковых побегов, моркови," +
                 " лука и гороха. Эти " +
@@ -62,8 +62,8 @@ class Menu : Fragment() {
             .load(Image2Url)
             .into(binding.image2)
        val name2 = "Салат по восточному"
-       val price2 = "250 р."
-       val weight2 = "320.0 г."
+       val price2 = "250"
+       val weight2 = ".р 320.0г."
        val descroption2 = "Основными компонентами салата обычно являются свежие овощи," +
                " такие как морковь, капуста и помидор, " +
                "которые тщательно нарезаются и смешиваются. " +
@@ -79,8 +79,8 @@ class Menu : Fragment() {
             .load(Image3Url)
             .into(binding.image3)
         val name3 = "Рыба с овощами и рисом"
-        val price3 = "330 р."
-        val weight3 = "470.0 г."
+        val price3 = "330"
+        val weight3 = " .р 470.0г."
         val descroption3 = "Это - очень вкусное и очень простое домашнее блюдо:" +
                 " рыба и рис с овощами готовятся одновременно"
         binding.image3.setOnClickListener {

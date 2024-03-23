@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.room.Room
 import com.example.menu.interfaces.BasketImageClickListener
 import com.example.menu.databinding.FragmentMenuMiniBinding
 import com.example.menu.db.Adapter
@@ -44,6 +45,7 @@ class Menu_mini : Fragment() {
     ): View? {
         binding = FragmentMenuMiniBinding.inflate(layoutInflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,6 +66,8 @@ class Menu_mini : Fragment() {
         binding.priceDish.text = price
         binding.weight.text = weight
         binding.Description.text = description
+
+
 
         //создаем переменную и вызываем базу данных
         val db = MainDb.getDb(requireContext())
