@@ -49,24 +49,25 @@ class Basket : Fragment(), BasketListener {
         // Устанавливаем название фрагмента с использованием менеджера
         FragmentManagerText.onFragmentTitleChanged("Корзина")
         // Инициализируем адаптер
-        // Передаем this в конструктор адаптера для установки слушателя
-        adapter = Adapter(this, dao)
+        adapter = Adapter(this, dao,viewLifecycleOwner.lifecycleScope)
         // Инициализируем RecyclerView
         init()
+        // Инициализируем loadDishesFromDb()
         loadDishesFromDb()
-//сообщаем системе, что у фрагмента есть свое собственное меню
+        //сообщаем системе, что у фрагмента есть свое собственное меню
         setHasOptionsMenu(true)
 
     }
 
+    //--------------------------------------------------------------------------------------------------
     //надуваем кнопку меню в экшен баре для этого фрагмента
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_fragment, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-//--------------------------------------------------------------------------------------------------
 
+    //--------------------------------------------------------------------------------------------------
     //настраиваем RecyclerView
     private fun init() {
         binding.apply {
@@ -74,7 +75,7 @@ class Basket : Fragment(), BasketListener {
             rvBasket.adapter = adapter
         }
     }
-    //--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 // при попытки доступа к базе данных на главном потоке,
 //может заблокировать пользовательский интерфейс на длительный период времени
 //Чтобы избежать это, используем корутины для
@@ -83,33 +84,46 @@ class Basket : Fragment(), BasketListener {
     // Метод обратного вызова для обработки нажатия на кнопку "Minus" в адаптере
     override fun onDeleteClicked(position: Int) {
         val deletedDish = adapter.basketList[position]
-        val deletedPrice = deletedDish.price_dish.toDouble() // Стоимость удаляемого блюда
+        val deletedPrice =
+            deletedDish.price_dish.toDouble() * deletedDish.quantity // Стоимость удаляемого блюда
         // Удаляем блюдо из базы данных
         deleteDishFromDb(deletedDish, deletedPrice)
     }
 
+    //--------------------------------------------------------------------------------------------------
     // Метод для удаления объекта из базы данных и обновления адаптера
     private fun deleteDishFromDb(dish: DishEntity, deletedPrice: Double) {
+        // Сохраняем текущее значение общей суммы перед удалением блюда
+        adapter.previousTotalCost = totalCost
         viewLifecycleOwner.lifecycleScope.launch {
+            val deletedQuantity = dish.quantity // Сохраняем количество удаляемого блюда
             dao.deleteDish(dish)
             // Ожидаем завершения удаления из базы данных
             withContext(Dispatchers.Main) {
                 // Первым делом загружаем данные из базы данных в адаптер
                 loadDishesFromDb()
                 // После этого обновляем общую стоимость корзины
-                updateTotalCost(totalCost - deletedPrice) // Вычитаем стоимость удаленного блюда
+                totalCost -= deletedPrice // Вычитаем стоимость удаленного блюда
+                // Теперь обновляем количество удаленного блюда в адаптере
+                adapter.updateDishQuantity(dish, deletedQuantity)
+                // Обновляем общую стоимость во фрагменте
+                updateTotalCost(totalCost)
             }
         }
     }
 
-    // Метод для пересчета общей стоимости всех блюд в корзине
+
+    //--------------------------------------------------------------------------------------------------
+// Метод для пересчета общей стоимости всех блюд в корзине
     private fun calculateTotalCost(): Double {
         var sum = 0.0
         for (dish in adapter.basketList) {
-            sum += dish.price_dish.toDouble()
+            sum += dish.price_dish.toDouble() * dish.quantity
         }
         return sum
     }
+
+    //--------------------------------------------------------------------------------------------------
     // Метод для загрузки блюд из базы данных в адаптер
     private fun loadDishesFromDb() {
         // Запускаем корутину для выполнения операций с базой данных
@@ -125,6 +139,7 @@ class Basket : Fragment(), BasketListener {
         }
     }
 
+    //--------------------------------------------------------------------------------------------------
     // Метод для обновления общей суммы
     override fun updateTotalCost(newTotalCost: Double) {
         // Обновляем отображение общей стоимости в вашем фрагменте
@@ -132,6 +147,7 @@ class Basket : Fragment(), BasketListener {
         totalCost = newTotalCost // Обновляем значение totalCost
     }
 
+    //--------------------------------------------------------------------------------------------------
     companion object {
         @JvmStatic
         fun newInstance() = Basket()

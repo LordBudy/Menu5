@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.room.Room
 import com.example.menu.interfaces.BasketImageClickListener
 import com.example.menu.databinding.FragmentMenuMiniBinding
-import com.example.menu.db.Adapter
 import com.example.menu.db.DishEntity
 import com.example.menu.db.MainDb
 import com.example.menu.managers.FragmentManager
@@ -79,6 +77,7 @@ class Menu_mini : Fragment() {
                 url_dish = urlIm.toString(),
                 name_dish = name.toString(),
                 price_dish = price.toString(),
+                countPrice = price.toString().toDouble(),
                 weight_dish = weight.toString(),
                 quantity = 1
             )
