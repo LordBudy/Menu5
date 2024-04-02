@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.example.menu.interfaces.BasketImageClickListener
 import com.example.menu.databinding.FragmentMenuMiniBinding
@@ -15,14 +16,19 @@ import com.example.menu.db.MainDb
 import com.example.menu.managers.FragmentManager
 import com.example.menu.managers.FragmentManagerText
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @Suppress("DEPRECATION")
 class Menu_mini : Fragment() {
+    var id: Int? = 0
     var urlIm: String? = null
     var name: String? = null
     var price: String? = null
     var weight: String? = null
+    var description: String? = null
     lateinit var binding: FragmentMenuMiniBinding
     lateinit var navController: NavController
     private lateinit var basketImageClickListener: BasketImageClickListener
@@ -51,12 +57,14 @@ class Menu_mini : Fragment() {
 
 //Устанавливаем название фрагмента с использованием менеджера
         FragmentManagerText.onFragmentTitleChanged("Выбранное блюдо")
+//--------------------------------------------------------------------------------------------------
 //принимаем переданное изображение по Url и прочие данные
+        id = arguments?.getInt("id")
         urlIm = arguments?.getString("url")
         name = arguments?.getString("name")
         price = arguments?.getString("price")
         weight = arguments?.getString("weight")
-        var description = arguments?.getString("description")
+        description = arguments?.getString("description")
 
 //Загружаем изображение в фрагменте Menu_mini, используя библиотеку загрузки изображений Picasso
         Picasso.get().load(urlIm).into(binding.im)
@@ -66,35 +74,49 @@ class Menu_mini : Fragment() {
         binding.Description.text = description
 
 
-
-        //создаем переменную и вызываем базу данных
-        val db = MainDb.getDb(requireContext())
-
         binding.atBascket.setOnClickListener {
             //передаем в базу данных необходимые поля
             val dish = DishEntity(
-                null,
+                idAvto = null,
+                id_dish = id,
                 url_dish = urlIm.toString(),
                 name_dish = name.toString(),
                 price_dish = price.toString(),
-                countPrice = price.toString().toDouble(),
+                countPrice = price.toString().toInt(),
                 weight_dish = weight.toString(),
                 quantity = 1
             )
-            // Вставьте данные в базу данных
-            //здесь вызываем из базы данных функцию getDao а она подтягивает интерфейс ImageDao с его функциями
-            // и заключаем в Thread{}.start() для запуска на второстепенном потоке а не на основном
-            Thread {
-                db.getDao().insertDish(dish)
-            }.start()
-
-            //открываем фрагмент Basket
-            FragmentManager.setFragment(
-                Basket.newInstance(),
-                requireActivity() as AppCompatActivity
-            )
+            // Получаем экземпляр базы данных
+            val db = MainDb.getDb(requireContext())
+            // Запускаем корутину для выполнения операции поиска в базе данных
+            lifecycleScope.launch {
+                // Выполняем поиск блюда в фоновом режиме
+                val existingDish = withContext(Dispatchers.IO) {
+                    // Используем метод getDishById для поиска блюда по идентификатору
+                    db.getDao().getDishById(id)
+                }
+                if (existingDish != null) {
+                    // Если блюдо существует, увеличиваем его количество на 1
+                    existingDish.quantity++
+                    // Обновляем countPrice, умножив цену блюда на новое количество
+                    existingDish.countPrice = existingDish.price_dish.toInt() * existingDish.quantity
+                    // Выполняем обновление блюда в базе данных
+                    withContext(Dispatchers.IO) {
+                        db.getDao().updateDish(existingDish)
+                    }
+                } else {
+                    // Если блюдо не существует, вставляем новое блюдо в базу данных
+                    withContext(Dispatchers.IO) {
+                        db.getDao().insertDish(dish)
+                    }
+                }
+                // После выполнения операции открываем фрагмент Basket
+                FragmentManager.setFragment(
+                    Basket.newInstance(),
+                    requireActivity() as AppCompatActivity
+                )
+            }
         }
-
     }
 
     companion object {

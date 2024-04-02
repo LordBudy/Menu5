@@ -8,7 +8,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "dishs")
 data class DishEntity(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+     var idAvto: Int? = null,
+
+    @ColumnInfo(name = "id_dish")
+    var id_dish: Int?,
 
     @ColumnInfo(name = "url")
     var url_dish: String,
@@ -20,7 +23,7 @@ data class DishEntity(
     var price_dish: String,
 
     @ColumnInfo(name = "countPrice")
-    var countPrice: Double,
+    var countPrice: Int,
 
     @ColumnInfo(name = "weight")
     var weight_dish: String,

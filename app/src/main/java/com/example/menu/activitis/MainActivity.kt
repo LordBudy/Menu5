@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
     }
 
+    //--------------------------------------------------------------------------------------------------
     //обрабатываем нажатие кнопки backAtMenu переходиv на фрагмент Menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         }
     }
 
+    //--------------------------------------------------------------------------------------------------
     private fun setBottomNavListener() {
         binding.bNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -83,6 +85,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         }
     }
 
+    //--------------------------------------------------------------------------------------------------
     // Переопределение метода для обработки нажатия кнопки "назад"
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
@@ -97,9 +100,11 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         binding.catInfo.text = title
     }
 
+    //--------------------------------------------------------------------------------------------------
     override fun onImageClicked(
-        urlImage: String,
-        nameDish: String,
+        idDish: Int,
+        imageUrl: String,
+        name: String,
         price: String,
         weight: String,
         description: String
@@ -109,8 +114,9 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
         // Передаем URL второму фрагменту с использованием аргументов
         val args = Bundle().apply {
-            putString("url", urlImage)
-            putString("name", nameDish)
+            putInt("id",idDish)
+            putString("url", imageUrl)
+            putString("name", name)
             putString("price", price)
             putString("weight", weight)
             putString("description", description)
@@ -123,6 +129,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
             .commit()
     }
 
+    //--------------------------------------------------------------------------------------------------
     override fun onImageAtBasketClicked(
         urlImage: String,
         nameDish: String,
@@ -146,5 +153,6 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
             .addToBackStack(null)
             .commit()
     }
+//--------------------------------------------------------------------------------------------------
 
 }

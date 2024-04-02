@@ -4,17 +4,14 @@ import android.view.Menu
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.menu.R
 import com.example.menu.databinding.FragmentBasketBinding
-import com.example.menu.db.Adapter
+import com.example.menu.db.BasketAdapter
 import com.example.menu.db.DishEntity
 import com.example.menu.db.ImageDao
 import com.example.menu.db.MainDb
@@ -27,7 +24,7 @@ import kotlinx.coroutines.withContext
 
 @Suppress("DEPRECATION")
 class Basket : Fragment(), BasketListener {
-    lateinit var adapter: Adapter
+    lateinit var adapter: BasketAdapter
     lateinit var binding: FragmentBasketBinding
     lateinit var db: MainDb
     lateinit var dao: ImageDao
@@ -49,11 +46,11 @@ class Basket : Fragment(), BasketListener {
         // Устанавливаем название фрагмента с использованием менеджера
         FragmentManagerText.onFragmentTitleChanged("Корзина")
         // Инициализируем адаптер
-        adapter = Adapter(this, dao,viewLifecycleOwner.lifecycleScope)
+        adapter = BasketAdapter(this, dao,viewLifecycleOwner.lifecycleScope)
         // Инициализируем RecyclerView
         init()
         // Инициализируем loadDishesFromDb()
-        loadDishesFromDb()
+       loadDishesFromDb()
         //сообщаем системе, что у фрагмента есть свое собственное меню
         setHasOptionsMenu(true)
 
@@ -83,49 +80,43 @@ class Basket : Fragment(), BasketListener {
 
     // Метод обратного вызова для обработки нажатия на кнопку "Minus" в адаптере
     override fun onDeleteClicked(position: Int) {
-        val deletedDish = adapter.basketList[position]
-        val deletedPrice =
-            deletedDish.price_dish.toDouble() * deletedDish.quantity // Стоимость удаляемого блюда
-        // Удаляем блюдо из базы данных
-        deleteDishFromDb(deletedDish, deletedPrice)
+       val dish = adapter.basketList[position]
+        val dishPriceDish = dish.price_dish.toInt()
+        //передаем в метод deleteDishFromDb удаляемую позицию
+       deleteDishFromDb(dish,dishPriceDish)
     }
 
     //--------------------------------------------------------------------------------------------------
     // Метод для удаления объекта из базы данных и обновления адаптера
-    private fun deleteDishFromDb(dish: DishEntity, deletedPrice: Double) {
-        // Сохраняем текущее значение общей суммы перед удалением блюда
+    private fun deleteDishFromDb(dish: DishEntity,priceDish: Int) {
+       // Сохраняем текущее значение общей суммы перед удалением блюда
         adapter.previousTotalCost = totalCost
-        viewLifecycleOwner.lifecycleScope.launch {
-            val deletedQuantity = dish.quantity // Сохраняем количество удаляемого блюда
+        // Запускаем корутину на главном потоке
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            // Удаляем блюдо из базы данных
             dao.deleteDish(dish)
-            // Ожидаем завершения удаления из базы данных
-            withContext(Dispatchers.Main) {
-                // Первым делом загружаем данные из базы данных в адаптер
-                loadDishesFromDb()
-                // После этого обновляем общую стоимость корзины
-                totalCost -= deletedPrice // Вычитаем стоимость удаленного блюда
-                // Теперь обновляем количество удаленного блюда в адаптере
-                adapter.updateDishQuantity(dish, deletedQuantity)
-                // Обновляем общую стоимость во фрагменте
-                updateTotalCost(totalCost)
-            }
+            // Удаляем блюдо из списка в адаптере
+            val isRemoved = adapter.basketList.remove(dish)
+           if (isRemoved) {
+               // Если блюдо было успешно удалено, обновляем общую стоимость и адаптер
+               totalCost -= priceDish * dish.quantity // Вычитаем стоимость блюда, учитывая его количество
+               // Пересчитываем countPrice для оставшихся блюд в корзине
+               adapter.basketList.forEach { it.countPrice = it.price_dish.toInt() * it.quantity }
+               // Обновляем адаптер
+               adapter.notifyDataSetChanged()
+               // Обновляем общую стоимость во фрагменте
+               updateTotalCost(totalCost)
+           }
         }
     }
 
 
     //--------------------------------------------------------------------------------------------------
-// Метод для пересчета общей стоимости всех блюд в корзине
-    private fun calculateTotalCost(): Double {
-        var sum = 0.0
-        for (dish in adapter.basketList) {
-            sum += dish.price_dish.toDouble() * dish.quantity
-        }
-        return sum
-    }
+
 
     //--------------------------------------------------------------------------------------------------
-    // Метод для загрузки блюд из базы данных в адаптер
-    private fun loadDishesFromDb() {
+    // Метод для загрузки блюд из базы данных в адаптер не забыть инициализировать
+   private fun loadDishesFromDb() {
         // Запускаем корутину для выполнения операций с базой данных
         viewLifecycleOwner.lifecycleScope.launch {
             // Получаем данные из базы данных асинхронно
@@ -135,12 +126,12 @@ class Basket : Fragment(), BasketListener {
             // Передаем полученные данные в адаптер с помощью метода setData()
             adapter.setData(dataFromDb)
             // Пересчитываем общую стоимость корзины после обновления данных в адаптере
-            updateTotalCost(calculateTotalCost())
+            updateTotalCost(BasketAdapter.calculateTotalCost(dataFromDb))
         }
     }
 
     //--------------------------------------------------------------------------------------------------
-    // Метод для обновления общей суммы
+    // Метод для обновления общей суммы в корзине
     override fun updateTotalCost(newTotalCost: Double) {
         // Обновляем отображение общей стоимости в вашем фрагменте
         binding.itogo.text = "К оплате: $newTotalCost руб."

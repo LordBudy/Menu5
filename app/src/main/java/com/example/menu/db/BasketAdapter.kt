@@ -13,34 +13,40 @@ import kotlinx.coroutines.withContext
 
 // Адаптер для RecyclerView
 
-class Adapter(private val listener: BasketListener,
-              private val dao: ImageDao,
-              private val lifecycleScope: LifecycleCoroutineScope
-) : RecyclerView.Adapter<Adapter.BasketHolder>() {
+class BasketAdapter(
+    private val listener: BasketListener,
+    private val dao: ImageDao,
+    private val lifecycleScope: LifecycleCoroutineScope
+) : RecyclerView.Adapter<BasketAdapter.BasketHolder>() {
 
     // Список элементов
-    val basketList = ArrayList<DishEntity>()
+    val basketList = mutableListOf<DishEntity>()
     // для хранения предыдущей общей суммы
     var previousTotalCost = 0.0
-    // Общая стоимость всех блюд
-    var totalCost = 0.0
+
 
     // ViewHolder для элементов списка
     inner class BasketHolder(private val binding: ItemDishBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         // Метод для связывания данных элемента списка с его представлением
-        fun bind(dish: DishEntity, countPrice: Double) {
+        fun bind(dish: DishEntity) {
             with(binding) {
                 Picasso.get()
                     .load(dish.url_dish)
                     .into(basketIm1)
+
+                // название блюда
                 nameDish.text = dish.name_dish
+                // фиксированная цена блюда
                 priceDish.text = dish.price_dish
+                //вес блюда
                 weight.text = dish.weight_dish
+                      //количество одгого вида бюда
                 Count.text = dish.quantity.toString()
-                // Установка значения countPrice
-                CountPrice.text = countPrice.toString()
+// Установка значения countPrice где будет сумироваться цена одного и того же блюда
+                val countPriceValue = dish.price_dish.toInt() * dish.quantity
+                CountPrice.text = countPriceValue.toString()
 //--------------------------------------------------------------------------------------------------
                 // Обработчик нажатия на кнопку "Plus"
                 plusBtn.setOnClickListener {
@@ -50,10 +56,12 @@ class Adapter(private val listener: BasketListener,
                     current++
                     // Обновляем текстовое представление Count
                     Count.text = current.toString()
-                    val price = dish.price_dish.toDouble()
-                    val newPrice = price * current
+                    val price = dish.price_dish.toInt()
+                    //умножаем цену на количество блюд при каждом нажатии на плюс
+                    val newPrice = price * current.toInt()
+                    //обновляем текущую цену с учетом количества блюд
                     CountPrice.text = newPrice.toString()
-                    // Обновляем количество блюда в объекте DishEntity
+                    // Обновляем количество блюда в DishEntity
                     dish.quantity = current
                     // Обновляем countPrice в объекте DishEntity
                     dish.countPrice = newPrice
@@ -61,8 +69,8 @@ class Adapter(private val listener: BasketListener,
                     updateDishInDb(dish)
                     // Прибавляем стоимость блюда к общей сумме
                     totalCost += price
-                    // Обновляем общую стоимость в фрагменте
-                    listener.updateTotalCost(totalCost)
+                    // Обновляем общую стоимость в фрагменте Basket
+                    updateTotalCost()
                 }
 
 //--------------------------------------------------------------------------------------------------
@@ -72,9 +80,9 @@ class Adapter(private val listener: BasketListener,
                     if (current > 1) {
                         current--
                         Count.text = current.toString()
-                        val price = dish.price_dish.toDouble()
-                        val newPrice = price * current
-                       CountPrice.text = newPrice.toString()
+                        val price = dish.price_dish.toInt()
+                        val newPrice = price * current.toInt()
+                        CountPrice.text = newPrice.toString()
                         // Обновляем количество блюда в объекте DishEntity
                         dish.quantity = current
                         // Обновляем countPrice в объекте DishEntity
@@ -84,61 +92,55 @@ class Adapter(private val listener: BasketListener,
                         // Отнимаем стоимость блюда от общей суммы
                         totalCost -= price
                         // Обновляем общую стоимость в фрагменте
-                        listener.updateTotalCost(totalCost)
+                        updateTotalCost()
                     } else {
-                        // Передаем стоимость удаляемого блюда в метод onDeleteClicked
-                        val adapterPosition = adapterPosition
-                        listener.onDeleteClicked(adapterPosition)
+                        // Передаем позицию удаляемого блюда в метод onDeleteClicked
+                        val position = adapterPosition
+                        listener.onDeleteClicked(position)
                     }
                 }
             }
         }
     }
 
+    //--------------------------------------------------------------------------------------------------
     // Создаем ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketHolder {
-        val binding = ItemDishBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemDishBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return BasketHolder(binding)
     }
 
     // Привязываем данные к ViewHolder
     override fun onBindViewHolder(holder: BasketHolder, position: Int) {
-        val dish = basketList[position]
-        // Получаем значение countPrice из объекта DishEntity
-        val countPrice = dish.countPrice
-        holder.bind(dish, countPrice)
+        holder.bind(basketList[position])
     }
 
     // Возвращаем количество элементов списка
     override fun getItemCount(): Int {
         return basketList.size
     }
-
+//--------------------------------------------------------------------------------------------------
     // Метод для обновления данных в списке и уведомления адаптера об изменениях
-    fun setData(data: List<DishEntity>) {
-        basketList.clear()
-        basketList.addAll(data)
-        // Вычисляем общую стоимость после обновления списка
-        totalCost = calculateTotalCost(basketList)
-        notifyDataSetChanged()
-        // Обновляем общую стоимость во фрагменте
-        listener.updateTotalCost(totalCost)
-    }
+fun setData(data: List<DishEntity>) {
+    // Очищаем корзину перед добавлением новых данных
+    basketList.clear()
+    // Добавляем новые данные в корзину
+    basketList.addAll(data)
 
-    fun updateDishQuantity(deletedDish: DishEntity, deletedQuantity: Int) {
-        val index = basketList.indexOfFirst { it.id == deletedDish.id }
-        if (index != -1) {
-            val updatedDish = basketList[index]
-            updatedDish.quantity -= deletedQuantity
-            if (updatedDish.quantity <= 0) {
-                // Удаляем блюдо из списка
-                basketList.removeAt(index)
-                notifyItemRemoved(index)
-            } else {
-                // Уведомить адаптер об измененном элементе
-                notifyItemChanged(index)
-            }
-        }
+    // Вычисляем общую стоимость с учётом новых данных
+    totalCost = calculateTotalCost(basketList)
+    // Уведомляем адаптер о изменениях
+    notifyDataSetChanged()
+    // Обновляем общую стоимость во фрагменте
+    updateTotalCost()
+}
+    private fun updateTotalCost() {
+        totalCost = calculateTotalCost(basketList)
+        listener.updateTotalCost(totalCost)
     }
     //обновляем данные бд
     private fun updateDishInDb(dish: DishEntity) {
@@ -147,10 +149,18 @@ class Adapter(private val listener: BasketListener,
             withContext(Dispatchers.IO) {
                 dao.updateDish(dish)
             }
+            // После обновления данных в базе, пересчитываем значение CountPrice
+            dish.countPrice = dish.price_dish.toInt() * dish.quantity
+            // После обновления данных в базе, обновляем общую стоимость
+            updateTotalCost()
+            // Обновляем отображение CountPrice в пользовательском интерфейсе
+            notifyDataSetChanged()
         }
     }
 
     companion object {
+        // Общая стоимость всех блюд
+        var totalCost = 0.0
         // Статический метод для вычисления общей стоимости всех блюд
         fun calculateTotalCost(basketList: List<DishEntity>): Double {
             var sum = 0.0
