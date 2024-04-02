@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
     //--------------------------------------------------------------------------------------------------
     override fun onImageClicked(
-        idDish: Int,
+        id_dish: Int,
         imageUrl: String,
         name: String,
         price: String,
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
         // Передаем URL второму фрагменту с использованием аргументов
         val args = Bundle().apply {
-            putInt("id",idDish)
+            putInt("id",id_dish)
             putString("url", imageUrl)
             putString("name", name)
             putString("price", price)
