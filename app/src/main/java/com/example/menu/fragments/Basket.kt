@@ -131,7 +131,7 @@ class Basket : Fragment(), BasketListener {
     // Метод для обновления общей суммы в корзине
     override fun updateTotalCost(newTotalCost: Double) {
         // Обновляем отображение общей стоимости в вашем фрагменте
-        binding.itogo.text = "К оплате: $newTotalCost руб."
+        binding.itogo.text = "Сделать заказ: $newTotalCost руб."
         totalCost = newTotalCost // Обновляем значение totalCost
     }
 
