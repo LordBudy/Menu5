@@ -24,11 +24,13 @@ import kotlinx.coroutines.withContext
 
 @Suppress("DEPRECATION")
 class Basket : Fragment(), BasketListener {
+
     lateinit var adapter: BasketAdapter
     lateinit var binding: FragmentBasketBinding
     lateinit var db: MainDb
     lateinit var dao: ImageDao
     private var totalCost = 0.0 // Общая стоимость всех блюд
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -109,11 +111,6 @@ class Basket : Fragment(), BasketListener {
            }
         }
     }
-
-
-    //--------------------------------------------------------------------------------------------------
-
-
     //--------------------------------------------------------------------------------------------------
     // Метод для загрузки блюд из базы данных в адаптер не забыть инициализировать
    private fun loadDishesFromDb() {
