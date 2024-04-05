@@ -76,8 +76,6 @@ class Menu_mini : Fragment() {
       binding.backBtn.setOnClickListener{
           requireActivity().supportFragmentManager.popBackStack()
       }
-
-
 //при нажатии на кнопку добавить в корзину сохраняем или обновляем данные в бд и переходим в корзину
         binding.atBascket.setOnClickListener {
             //передаем в базу данных необходимые поля
