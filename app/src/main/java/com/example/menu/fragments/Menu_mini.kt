@@ -72,8 +72,13 @@ class Menu_mini : Fragment() {
         binding.priceDish.text = price
         binding.weight.text = weight
         binding.Description.text = description
+//при нажатии на стрелку назад возвращаемся в меню
+      binding.backBtn.setOnClickListener{
+          requireActivity().supportFragmentManager.popBackStack()
+      }
 
 
+//при нажатии на кнопку добавить в корзину сохраняем или обновляем данные в бд и переходим в корзину
         binding.atBascket.setOnClickListener {
             //передаем в базу данных необходимые поля
             val dish = DishEntity(

@@ -36,8 +36,10 @@ class Menu : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Указываем название фрагмента на котором нгаходимся с использованием менеджера
+        // Указываем название фрагмента на котором находимся с использованием менеджера
         FragmentManagerText.onFragmentTitleChanged("Меню")
+
+
         val dishes = listOf(
             AllDish(
                 idDish = 1,

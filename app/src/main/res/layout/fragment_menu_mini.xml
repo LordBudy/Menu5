@@ -7,10 +7,11 @@
     android:background="#80B3A9A9"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    tools:ignore="ExtraText"> <!-- #80 определяет уровень прозрачности (значение от 00 до FF) -->
-
+    android:clickable="true"
+    tools:ignore="ExtraText"
     tools:context=".fragments.Menu_mini">
-
+    <!-- #80 определяет уровень прозрачности (значение от 00 до FF) -->
+    <!-- Добавленный атрибут clickable позволяет поглощать нажатия сквозь прозрачный фон -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,6 +20,18 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UseCompoundDrawables,UselessParent">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_back"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageView
             android:id="@+id/im"
@@ -79,9 +92,9 @@
                 android:id="@+id/Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginStart="5dp"
                 android:gravity="left"
                 android:text="@string/description"
                 android:textColor="@color/black"
