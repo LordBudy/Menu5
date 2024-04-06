@@ -2,7 +2,7 @@ package com.example.menu.interfaces
 
 interface ImageClickListener {
     fun onImageClicked(
-        id: Int,
+        id_dish: Int,
         imageUrl: String,
         name: String,
         price: String,

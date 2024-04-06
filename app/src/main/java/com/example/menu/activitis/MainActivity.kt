@@ -1,5 +1,7 @@
 package com.example.menu.activitis
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import com.example.menu.R
 import com.example.menu.databinding.ActivityMainBinding
+import com.example.menu.db.UserManager
 import com.example.menu.fragments.Account
+import com.example.menu.fragments.AccountUser
 import com.example.menu.fragments.Basket
 import com.example.menu.fragments.Home
 import com.example.menu.fragments.Menu_mini
@@ -19,30 +23,37 @@ import com.example.menu.managers.FragmentManager
 import com.example.menu.managers.FragmentManagerText
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListener,
-    BasketImageClickListener {
-    //сперва обьявляем переменную
+class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListener, BasketImageClickListener {
+    // обьявляем переменную binding
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //теперь инициализируем эту переменную
+        //инициализируем эту переменную binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         // указываем что он главный и получаем доступ ко всем id
         setContentView(binding.root)
 
+        // Инициализируем UserManager с контекстом приложения
+        UserManager.init(applicationContext)
 
-//инициализируем фрагмент менеджер для заголовков
+        //инициализируем фрагмент менеджер для заголовков
         FragmentManagerText.registerFragmentTitleListener(this)
 
-        // Проверяем, что savedInstanceState равно null, чтобы избежать пересоздания фрагмента при повороте экрана
-        if (savedInstanceState == null) {
+        // Проверяем, был ли пользователь уже зарегистрирован
+        if (UserManager.isRegistered()) {
+            // Если пользователь уже зарегистрирован, открываем главную страницу
             supportFragmentManager.beginTransaction()
-                .replace(R.id.Container_frag, Home())
+                .replace(R.id.Container_frag, Home.newInstance())
+                .commit()
+        } else {
+            // Если пользователь не зарегистрирован, открываем страницу регистрации
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.Container_frag, Account.newInstance())
                 .commit()
         }
-        setBottomNavListener()
 
+        setBottomNavListener()
     }
 
     //--------------------------------------------------------------------------------------------------
@@ -78,7 +89,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
                 }
 
                 R.id.btn_account -> {
-                    FragmentManager.setFragment(Account.newInstance(), this)
+                    FragmentManager.setFragment(AccountUser.newInstance(), this)
                 }
             }
             true
@@ -96,6 +107,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         }
     }
 
+    //названия фрагментов открытых на данный момент
     override fun onFragmentTitleChanged(title: String) {
         binding.catInfo.text = title
     }
@@ -114,7 +126,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
         // Передаем URL второму фрагменту с использованием аргументов
         val args = Bundle().apply {
-            putInt("id",id_dish)
+            putInt("id", id_dish)
             putString("url", imageUrl)
             putString("name", name)
             putString("price", price)

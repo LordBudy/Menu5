@@ -23,7 +23,7 @@ interface Dao {
 
     //для считывания информации об аккаунтах из db используем анотацию @Query
     @Query("SELECT * FROM users")//стандартный запрос для sqlite значит (выбрать все колонки из ентити users)
-    fun getAllUser():List<UserEntity>
+    fun getUser():List<UserEntity>
 
     // метод для удаления объекта из таблицы dishs
     @Delete
