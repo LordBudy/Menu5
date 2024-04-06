@@ -13,7 +13,7 @@ import com.example.menu.R
 import com.example.menu.databinding.FragmentBasketBinding
 import com.example.menu.db.BasketAdapter
 import com.example.menu.db.DishEntity
-import com.example.menu.db.ImageDao
+import com.example.menu.db.Dao
 import com.example.menu.db.MainDb
 import com.example.menu.interfaces.BasketListener
 import com.example.menu.managers.FragmentManagerText
@@ -28,7 +28,7 @@ class Basket : Fragment(), BasketListener {
     lateinit var adapter: BasketAdapter
     lateinit var binding: FragmentBasketBinding
     lateinit var db: MainDb
-    lateinit var dao: ImageDao
+    lateinit var dao: Dao
     private var totalCost = 0.0 // Общая стоимость всех блюд
 
     override fun onCreateView(

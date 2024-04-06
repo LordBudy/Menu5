@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.menu.interfaces.ImageClickListener
 import com.example.menu.databinding.FragmentMenuBinding
-import com.example.menu.db.AllDish
+import com.example.menu.models.AllDish
 import com.example.menu.managers.FragmentManagerText
 import com.squareup.picasso.Picasso
 

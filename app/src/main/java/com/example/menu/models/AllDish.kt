@@ -1,4 +1,4 @@
-package com.example.menu.db
+package com.example.menu.models
 
 data class AllDish(
     val idDish: Int,
