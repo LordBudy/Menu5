@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 
 class BasketAdapter(
     private val listener: BasketListener,
-    private val dao: ImageDao,
+    private val dao: Dao,
     private val lifecycleScope: LifecycleCoroutineScope
 ) : RecyclerView.Adapter<BasketAdapter.BasketHolder>() {
 

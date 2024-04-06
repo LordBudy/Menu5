@@ -4,18 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database (
-    entities = [DishEntity::class],
+    entities = [DishEntity::class,UserEntity::class],
+
     version = 1,
     exportSchema = false
 )
 abstract class MainDb: RoomDatabase() {
 
 //вызываем интерфейс ImageDao с функциями
-abstract fun getDao(): ImageDao
+abstract fun getDao(): Dao
 
 
     //функция создает базу данных или вызывает уже сущестыующую инстанцию
