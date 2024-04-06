@@ -22,8 +22,8 @@ interface Dao {
    fun getAllDish():List<DishEntity>
 
     //для считывания информации об аккаунтах из db используем анотацию @Query
-    @Query("SELECT * FROM users")//стандартный запрос для sqlite значит (выбрать все колонки из ентити users)
-    fun getUser():List<UserEntity>
+    @Query("SELECT * FROM user LIMIT 1")
+    suspend fun getUser(): UserEntity
 
     // метод для удаления объекта из таблицы dishs
     @Delete

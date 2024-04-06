@@ -60,7 +60,11 @@ binding.signUp.setOnClickListener{
 
     val users = UserEntity(
         id = null,
+        avatar = null,
         name = name,
+        polDB = null,
+        ageDB = null,
+        sizeDB = null,
         password = password,
         email = email,
         quantity = 0
