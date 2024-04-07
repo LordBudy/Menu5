@@ -1,14 +1,24 @@
 package com.example.menu.activitis
 
+import android.Manifest
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
+
 import com.example.menu.R
 import com.example.menu.databinding.ActivityMainBinding
+import com.example.menu.db.MainDb
+import com.example.menu.db.UserEntity
 import com.example.menu.db.UserManager
 import com.example.menu.fragments.Account
 import com.example.menu.fragments.AccountUser
@@ -21,12 +31,21 @@ import com.example.menu.interfaces.FragmentTitleListener
 import com.example.menu.interfaces.ImageClickListener
 import com.example.menu.managers.FragmentManager
 import com.example.menu.managers.FragmentManagerText
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListener, BasketImageClickListener {
     // обьявляем переменную binding
     lateinit var binding: ActivityMainBinding
-
+    // Объявляем переменную currentUser
+    private var currentUser: UserEntity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //инициализируем эту переменную binding
@@ -40,22 +59,40 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         //инициализируем фрагмент менеджер для заголовков
         FragmentManagerText.registerFragmentTitleListener(this)
 
-        // Проверяем, был ли пользователь уже зарегистрирован
-        if (UserManager.isRegistered()) {
-            // Если пользователь уже зарегистрирован, открываем главную страницу
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.Container_frag, Home.newInstance())
-                .commit()
-        } else {
-            // Если пользователь не зарегистрирован, открываем страницу регистрации
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.Container_frag, Account.newInstance())
-                .commit()
+        // Запускаем корутину для получения имени пользователя из базы данных
+        lifecycleScope.launch {
+            val userName = getNameFromDb()
+            setName(userName)
+
+            if (UserManager.isRegistered()) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.Container_frag, Home.newInstance())
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.Container_frag, Account.newInstance())
+                    .commit()
+            }
         }
 
+        // Установка слушателя для нижней навигации
         setBottomNavListener()
     }
-
+    // Функция для получения имени пользователя из базы данных
+    private suspend fun getNameFromDb(): String? {
+        return suspendCancellableCoroutine { continuation ->
+            lifecycleScope.launch {
+                try {
+                    val db = MainDb.getDb(applicationContext)
+                    val dao = db.getDao()
+                    val user = dao.getUser()
+                    continuation.resume(user.name)
+                } catch (e: Exception) {
+                    continuation.resumeWithException(e)
+                }
+            }
+        }
+    }
     //--------------------------------------------------------------------------------------------------
     //обрабатываем нажатие кнопки backAtMenu переходиv на фрагмент Menu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -109,7 +146,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
     //названия фрагментов открытых на данный момент
     override fun onFragmentTitleChanged(title: String) {
-        binding.catInfo.text = title
+        binding.InfoCategory.text = title
     }
 
     //--------------------------------------------------------------------------------------------------
@@ -166,5 +203,40 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
             .commit()
     }
 //--------------------------------------------------------------------------------------------------
+fun setAvatar(avatar: String?) {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        != PackageManager.PERMISSION_GRANTED) {
+        // Если разрешение не предоставлено, запросить его
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            REQUEST_CODE_READ_EXTERNAL_STORAGE)
+    } else {
+        // Разрешение уже предоставлено, выполнить необходимые действия
+        loadAvatarFromUri(avatar)
+    }
+}
+    //--------------------------------------------------------------------------------------------------
+    // Метод для загрузки фотографии из URI и отображения в avatarMain
+    private fun loadAvatarFromUri(avatar: String?) {
+        avatar?.let { avatarUri ->
+            val inputStream = this.contentResolver.openInputStream(Uri.parse(avatarUri))
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            binding.avatarMain.setImageBitmap(bitmap)
+        }
+    }
 
+    //--------------------------------------------------------------------------------------------------
+
+    fun setName(name: String?) {
+        // Проверяем, что name не null и не пустое
+        name?.let { userName ->
+            // Устанавливаем имя пользователя в TextView
+            binding.InfoMain.text = userName
+        }
+    }
+
+    companion object {
+        //можно использовать любое целое число здесь
+        private const val REQUEST_CODE_READ_EXTERNAL_STORAGE = 123
+    }
 }

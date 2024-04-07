@@ -3,6 +3,7 @@ package com.example.menu.fragments
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -11,10 +12,12 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.menu.activitis.MainActivity
 import com.example.menu.databinding.FragmentAccountUserBinding
 import com.example.menu.db.BasketAdapter
 import com.example.menu.db.Dao
 import com.example.menu.db.MainDb
+import com.example.menu.db.UserEntity
 import com.example.menu.managers.FragmentManagerText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,25 +50,30 @@ class AccountUser : Fragment() {
         binding.avatarDB.setOnClickListener {
             openGalleryForImage()
         }
-
-    }
-
-    // Метод для загрузки блюд из базы данных в адаптер не забыть инициализировать
-    fun loadUserFromDb() {
-        // Запускаем корутину для выполнения операций с базой данных
-        viewLifecycleOwner.lifecycleScope.launch {
-            // Получаем данные из базы данных асинхронно
-            val user = withContext(Dispatchers.IO) {
-                dao.getUser()
+// Загружаем данные пользователя после создания представления
+        loadUserFromDb()
+        // Установка слушателя на кнопку сохранения
+        binding.saveDB.setOnClickListener {
+            // Обновляем данные пользователя в базе данных
+            updateUserInDb()
+            // Передаем изображение и имя пользователя в MainActivity
+            (requireActivity() as MainActivity).apply {
+                setAvatar(currentUser?.avatar)
+                setName(currentUser?.name)
             }
-            // Обновляем представления макета с полученными данными о пользователе
-            binding.apply {
-                avatarDB.setImageDrawable(null) // Очистить изображение (если требуется)
-                nameDB.text = user.name
-                emailDB.text = user.email
-                polDB.setText(user.polDB ?: "")
-                ageDB.setText(user.ageDB?.toString() ?: "")
-                sizeDB.setText(user.sizeDB?.toString() ?: "")
+        }
+    }
+    // Объявляем переменную для текущего пользователя
+    private var currentUser: UserEntity? = null
+
+   
+    //метод для обновления данных пользователя в базе данных
+    private fun updateUserInDb() {
+        currentUser?.let { user ->
+            viewLifecycleOwner.lifecycleScope.launch {
+                withContext(Dispatchers.IO) {
+                    dao.updateUser(user)
+                }
             }
         }
     }
@@ -80,12 +88,43 @@ class AccountUser : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
             val selectedImageUri = data?.data
-            // Обработайте выбранный URI изображения здесь
-            // Например, вы можете отобразить его в ImageView.
             selectedImageUri?.let {
                 val inputStream = requireActivity().contentResolver.openInputStream(it)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
                 binding.avatarDB.setImageBitmap(bitmap)
+
+                // Сохранение URI изображения в базу данных
+                currentUser?.avatar = selectedImageUri.toString()
+                updateUserInDb()
+            }
+        }
+    }
+    // Обновление информации о пользователе в методе loadUserFromDb():
+    fun loadUserFromDb() {
+        // Запускаем корутину для выполнения операций с базой данных
+        viewLifecycleOwner.lifecycleScope.launch {
+            // Получаем данные из базы данных асинхронно
+            currentUser = withContext(Dispatchers.IO) {
+                dao.getUser()
+            }
+            // Проверяем, что пользователь был загружен
+            currentUser?.let { user ->
+                // Обновляем представления макета с полученными данными о пользователе
+                binding.apply {
+                    avatarDB.setImageDrawable(null)
+                    nameDB.text = user.name
+                    emailDB.text = user.email
+                    polDB.setText(user.polDB ?: "")
+                    ageDB.setText(user.ageDB?.toString() ?: "")
+                    sizeDB.setText(user.sizeDB?.toString() ?: "")
+
+                    // Если у пользователя есть URI изображения, отобразите его
+                    user.avatar?.let { avatarUri ->
+                        val inputStream = requireActivity().contentResolver.openInputStream(Uri.parse(avatarUri))
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        avatarDB.setImageBitmap(bitmap)
+                    }
+                }
             }
         }
     }

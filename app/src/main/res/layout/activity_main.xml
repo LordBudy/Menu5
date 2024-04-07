@@ -10,28 +10,43 @@
     tools:ignore="VisualLintButtonSize">
 
     <TextView
-        android:id="@+id/catInfo"
+        android:id="@+id/InfoCategory"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="@string/info"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/InfoMain"
+        app:layout_constraintEnd_toStartOf="@+id/avatarMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/InfoMain"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="@string/info"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/avatarMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/InfoCategory" />
+
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="3dp"
+        android:id="@+id/avatarMain"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:contentDescription="@string/avatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/catInfo"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@drawable/icon" />
 
@@ -45,8 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catInfo"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/avatarMain"
         tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

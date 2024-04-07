@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.menu.activitis.MainActivity
 import com.example.menu.databinding.FragmentAccountBinding
 import com.example.menu.db.MainDb
 import com.example.menu.db.UserEntity
@@ -19,15 +20,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class Account :Fragment() {
+class Account : Fragment() {
 
-lateinit var binding: FragmentAccountBinding
+    lateinit var binding: FragmentAccountBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
-        binding = FragmentAccountBinding.inflate(layoutInflater,container,false)
+    ): View {
+        binding = FragmentAccountBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,58 +39,70 @@ lateinit var binding: FragmentAccountBinding
 
 
 
-binding.signUp.setOnClickListener{
+        binding.signUp.setOnClickListener {
 //Применение .trim() гарантирует, что данные, полученные из полей ввода,
 //не будут содержать нежелательных пробелов, которые могут повлиять на логику
-   val name = binding.name.text.toString().trim()
-   val password = binding.password.text.toString().trim()
-   val email = binding.email.text.toString().trim()
+            val name = binding.name.text.toString().trim()
+            val password = binding.password.text.toString().trim()
+            val email = binding.email.text.toString().trim()
 
-    // Проверка на пустые поля
-    if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
-        // Вывод сообщения об ошибке
-        Toast.makeText(requireContext(), "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show()
-        return@setOnClickListener
-    }
-    // Проверка валидности адреса электронной почты
-    if (!isValidEmail(email)) {
-        // Вывод сообщения об ошибке
-        Toast.makeText(requireContext(), "Неверный адрес электронной почты", Toast.LENGTH_SHORT).show()
-        return@setOnClickListener
-    }
-
-    val users = UserEntity(
-        id = null,
-        avatar = null,
-        name = name,
-        polDB = null,
-        ageDB = null,
-        sizeDB = null,
-        password = password,
-        email = email,
-        quantity = 0
-    )
-    // Получаем экземпляр базы данных
-    val db = MainDb.getDb(requireContext())
-    // Запускаем корутину для в базу данных
-    lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                db.getDao().insertUser(users)
+            // Проверка на пустые поля
+            if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
+                // Вывод сообщения об ошибке
+                Toast.makeText(
+                    requireContext(),
+                    "Пожалуйста, заполните все поля",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                return@setOnClickListener
             }
+            // Проверка валидности адреса электронной почты
+            if (!isValidEmail(email)) {
+                // Вывод сообщения об ошибке
+                Toast.makeText(
+                    requireContext(),
+                    "Неверный адрес электронной почты",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                return@setOnClickListener
+            }
+
+            val users = UserEntity(
+                id = null,
+                avatar = null,
+                name = name,
+                polDB = null,
+                ageDB = null,
+                sizeDB = null,
+                password = password,
+                email = email,
+                quantity = 0
+            )
+            // Получаем экземпляр базы данных
+            val db = MainDb.getDb(requireContext())
+// Запускаем корутину для в базу данных
+            lifecycleScope.launch {
+                withContext(Dispatchers.IO) {
+                    db.getDao().insertUser(users)
+                }
+                // После сохранения имени, передаем его в MainActivity
+                (requireActivity() as MainActivity).setName(name)
+                // Сохраняем состояние успешной регистрации пользователя
+                UserManager.setRegistered(true)
+                // После выполнения операции открываем фрагмент
+                FragmentManager.setFragment(
+                    Home.newInstance(),
+                    requireActivity() as AppCompatActivity
+                )
+            }
+
         }
-    // Сохраняем состояние успешной регистрации пользователя
-    UserManager.setRegistered(true)
-        // После выполнения операции открываем фрагмент
-        FragmentManager.setFragment(
-            AccountUser.newInstance(),
-            requireActivity() as AppCompatActivity
-        )
     }
 
-}
-
-     // Функция для проверки валидности адреса электронной почты
-     private  fun isValidEmail(email: String): Boolean {
+    // Функция для проверки валидности адреса электронной почты
+    private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 

@@ -52,11 +52,10 @@
 
         <ImageView
             android:id="@+id/avatarDB"
-            android:layout_width="match_parent"
-            android:layout_height="263dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
             android:background="#B5ACAC"
             tools:src="@tools:sample/avatars" />
 
