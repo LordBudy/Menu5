@@ -12,12 +12,14 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.menu.R
 import com.example.menu.activitis.MainActivity
 import com.example.menu.databinding.FragmentAccountUserBinding
 import com.example.menu.db.BasketAdapter
 import com.example.menu.db.Dao
 import com.example.menu.db.MainDb
 import com.example.menu.db.UserEntity
+import com.example.menu.db.UserManager
 import com.example.menu.managers.FragmentManagerText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,8 +52,13 @@ class AccountUser : Fragment() {
         binding.avatarDB.setOnClickListener {
             openGalleryForImage()
         }
+
+        binding.deleteDB.setOnClickListener {
+            currentUser?.let { deleteUserFromDb(it) }
+        }
 // Загружаем данные пользователя после создания представления
         loadUserFromDb()
+
         // Установка слушателя на кнопку сохранения
         binding.saveDB.setOnClickListener {
             // Обновляем данные пользователя в базе данных
@@ -105,7 +112,7 @@ class AccountUser : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             // Получаем данные из базы данных асинхронно
             currentUser = withContext(Dispatchers.IO) {
-                dao.getUser()
+                MainDb.getDb(requireContext()).getDao().getUser()
             }
             // Проверяем, что пользователь был загружен
             currentUser?.let { user ->
@@ -126,6 +133,28 @@ class AccountUser : Fragment() {
                     }
                 }
             }
+        }
+    }
+    private fun deleteUserFromDb(currentUser: UserEntity) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                // Удаление пользователя из базы данных
+                MainDb.getDb(requireContext()).getDao().deleteUser(currentUser)
+                // Очистка информации о пользователе из менеджера пользователя
+                UserManager.clearUser()
+            }
+
+            // Переход на экран регистрации после удаления пользователя
+            (requireActivity() as MainActivity).apply {
+                setAvatar(null) // Очистка аватара
+                setName(null) // Очистка имени пользователя
+                // Переход на экран регистрации
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.Container_frag, Account.newInstance())
+                    .commit()
+            }
+            // Обновляем поле InfoMain на пустую строку
+            (requireActivity() as MainActivity).setName("Info")
         }
     }
 

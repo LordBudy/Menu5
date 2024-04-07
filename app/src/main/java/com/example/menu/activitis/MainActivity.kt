@@ -32,10 +32,12 @@ import com.example.menu.interfaces.ImageClickListener
 import com.example.menu.managers.FragmentManager
 import com.example.menu.managers.FragmentManagerText
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -63,15 +65,10 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         lifecycleScope.launch {
             val userName = getNameFromDb()
             setName(userName)
-
             if (UserManager.isRegistered()) {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.Container_frag, Home.newInstance())
-                    .commit()
+                FragmentManager.setFragment(Home.newInstance(), this@MainActivity)
             } else {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.Container_frag, Account.newInstance())
-                    .commit()
+                FragmentManager.setFragment(Account.newInstance(), this@MainActivity)
             }
         }
 
@@ -80,17 +77,8 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
     }
     // Функция для получения имени пользователя из базы данных
     private suspend fun getNameFromDb(): String? {
-        return suspendCancellableCoroutine { continuation ->
-            lifecycleScope.launch {
-                try {
-                    val db = MainDb.getDb(applicationContext)
-                    val dao = db.getDao()
-                    val user = dao.getUser()
-                    continuation.resume(user.name)
-                } catch (e: Exception) {
-                    continuation.resumeWithException(e)
-                }
-            }
+        return withContext(Dispatchers.IO) {
+            MainDb.getDb(applicationContext).getDao().getUser().name
         }
     }
     //--------------------------------------------------------------------------------------------------

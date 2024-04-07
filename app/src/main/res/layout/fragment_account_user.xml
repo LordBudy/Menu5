@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#377510"
+    android:background="#ACAEAD"
     tools:context=".fragments.AccountUser">
 
     <Button
@@ -109,6 +109,7 @@
             android:textColorHighlight="@color/greey"
             android:textStyle="italic"
             tools:ignore="TouchTargetSizeCheck" />
+
         <EditText
             android:id="@+id/sizeDB"
             android:layout_width="match_parent"

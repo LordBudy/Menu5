@@ -2,8 +2,8 @@ package com.example.menu.db
 
 import android.content.Context
 import android.content.SharedPreferences
-//объект UserManager,предоставляет статические методы для управления информацией о регистрации
-// пользователя в приложении с использованием SharedPreferences
+//объект UserManager,предоставляет статические методы для управления информацией
+// о регистрации пользователя в приложении с использованием SharedPreferences
 object UserManager {
     //PREF_NAME константа, представляющая имя файла SharedPreferences,
     // в котором будет храниться информация о регистрации пользователя.
@@ -25,5 +25,9 @@ object UserManager {
 //setRegistered(isRegistered: Boolean) метод для установки статуса регистрации пользователя
     fun setRegistered(isRegistered: Boolean) {
         sharedPreferences.edit().putBoolean(KEY_IS_REGISTERED, isRegistered).apply()
+    }
+    // Метод для очистки информации о пользователе
+    fun clearUser() {
+        sharedPreferences.edit().remove(KEY_IS_REGISTERED).apply()
     }
 }
