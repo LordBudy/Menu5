@@ -37,7 +37,7 @@ class Menu : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Указываем название фрагмента на котором находимся с использованием менеджера
-        FragmentManagerText.onFragmentTitleChanged("Меню")
+        FragmentManagerText.onFragmentTitleChanged("Меню блюд")
 
 
         val dishes = listOf(

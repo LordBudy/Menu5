@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.menu.activitis.MainActivity
+
 import com.example.menu.databinding.FragmentAccountBinding
 import com.example.menu.db.MainDb
 import com.example.menu.db.UserEntity
@@ -35,7 +36,7 @@ class Account : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Устанавливаем название фрагмента с использованием менеджера
-        FragmentManagerText.onFragmentTitleChanged("Аккаунт")
+        FragmentManagerText.onFragmentTitleChanged("Аккаунт регистрация")
 
 
 

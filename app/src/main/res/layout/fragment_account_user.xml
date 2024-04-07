@@ -7,6 +7,38 @@
     android:background="#ACAEAD"
     tools:context=".fragments.AccountUser">
 
+    <EditText
+        android:id="@+id/sizeDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Размер трусов )))"
+        android:inputType="text"
+        android:textColorHighlight="@color/greey"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/saveDB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/ageDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Возраст"
+        android:inputType="text"
+        android:textColorHighlight="@color/greey"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/sizeDB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <Button
         android:id="@+id/saveDB"
         android:layout_width="match_parent"
@@ -15,7 +47,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_background_save"
-        android:text="Сохранить"
+        android:text="Сохранить изменения"
         android:textColor="@color/black"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/deleteDB"
@@ -29,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_background_delete"
-        android:text="Удалить"
+        android:text="Удалить аккаунт"
         android:textColor="@color/black"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,24 +72,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="250dp"
         android:background="#F4F2F2"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/avatarDB"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_gravity="center"
+            android:layout_gravity="right"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="#B5ACAC"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/unnamed"/>
 
         <TextView
             android:id="@+id/nameDB"
@@ -81,8 +115,8 @@
             android:hint="Email"
             android:textColorHighlight="@color/greey" />
 
-        <EditText
-            android:id="@+id/polDB"
+        <TextView
+            android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -90,41 +124,45 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:hint="Пол"
-            android:inputType="text"
-            android:textColorHighlight="@color/greey"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textColorHighlight="@color/greey" />
 
-        <EditText
-            android:id="@+id/ageDB"
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:ems="10"
             android:hint="Возраст"
-            android:inputType="text"
-            android:textColorHighlight="@color/greey"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textColorHighlight="@color/greey" />
 
-        <EditText
-            android:id="@+id/sizeDB"
+        <TextView
+            android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:ems="10"
-            android:hint="Размер трусов )))"
-            android:inputType="text"
-            android:textColorHighlight="@color/greey"
-            android:textStyle="italic"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:hint="Размер )))"
+            android:textColorHighlight="@color/greey" />
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/polDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Пол"
+        android:inputType="text"
+        android:textColorHighlight="@color/greey"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/ageDB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

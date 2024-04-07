@@ -1,21 +1,17 @@
 package com.example.menu.activitis
 
 import android.Manifest
-import android.content.Context
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
-
 import com.example.menu.R
+
 import com.example.menu.databinding.ActivityMainBinding
 import com.example.menu.db.MainDb
 import com.example.menu.db.UserEntity
@@ -24,6 +20,7 @@ import com.example.menu.fragments.Account
 import com.example.menu.fragments.AccountUser
 import com.example.menu.fragments.Basket
 import com.example.menu.fragments.Home
+import com.example.menu.fragments.Menu
 import com.example.menu.fragments.Menu_mini
 import com.example.menu.fragments.Search
 import com.example.menu.interfaces.BasketImageClickListener
@@ -31,16 +28,9 @@ import com.example.menu.interfaces.FragmentTitleListener
 import com.example.menu.interfaces.ImageClickListener
 import com.example.menu.managers.FragmentManager
 import com.example.menu.managers.FragmentManagerText
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListener, BasketImageClickListener {
@@ -78,7 +68,8 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
     // Функция для получения имени пользователя из базы данных
     private suspend fun getNameFromDb(): String? {
         return withContext(Dispatchers.IO) {
-            MainDb.getDb(applicationContext).getDao().getUser().name
+            val user = MainDb.getDb(applicationContext).getDao().getUser()
+            user?.name // Проверка на null перед вызовом метода getName()
         }
     }
     //--------------------------------------------------------------------------------------------------
@@ -87,7 +78,7 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         return when (item.itemId) {
             R.id.backAtMenu -> {
                 // Возврат на фрагмент Menu при нажатии кнопки "назад"
-                FragmentManager.setFragment(com.example.menu.fragments.Menu.newInstance(), this)
+                FragmentManager.setFragment(Menu.newInstance(), this)
                 true
             }
 
@@ -197,7 +188,8 @@ fun setAvatar(avatar: String?) {
         // Если разрешение не предоставлено, запросить его
         ActivityCompat.requestPermissions(this,
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            REQUEST_CODE_READ_EXTERNAL_STORAGE)
+            REQUEST_CODE_READ_EXTERNAL_STORAGE
+        )
     } else {
         // Разрешение уже предоставлено, выполнить необходимые действия
         loadAvatarFromUri(avatar)

@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.menu.R
 import com.example.menu.activitis.MainActivity
+
 import com.example.menu.databinding.FragmentAccountUserBinding
-import com.example.menu.db.BasketAdapter
 import com.example.menu.db.Dao
 import com.example.menu.db.MainDb
 import com.example.menu.db.UserEntity
@@ -43,7 +43,7 @@ class AccountUser : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Устанавливаем название фрагмента с использованием менеджера
-        FragmentManagerText.onFragmentTitleChanged("Пользователь")
+        FragmentManagerText.onFragmentTitleChanged("настройки пользователя")
 // Получаем экземпляр базы данных
         db = MainDb.getDb(requireContext())
         // Получаем DAO для выполнения запросов к базе данных

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activitis.MainActivity"
+    tools:context=".MainActivity"
     tools:ignore="VisualLintButtonSize">
 
     <TextView
@@ -23,7 +23,8 @@
         app:layout_constraintBottom_toTopOf="@+id/InfoMain"
         app:layout_constraintEnd_toStartOf="@+id/avatarMain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/InfoMain"
@@ -37,18 +38,19 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/avatarMain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InfoCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/InfoCategory"
+        tools:ignore="TextSizeCheck" />
 
     <ImageView
         android:id="@+id/avatarMain"
         android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        android:contentDescription="@string/avatar"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/unnamed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/Container_frag"
@@ -60,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatarMain"
+        app:layout_constraintTop_toBottomOf="@+id/InfoMain"
         tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
