@@ -1,6 +1,8 @@
 package com.example.menu.activitis
 
 import android.Manifest
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
     lateinit var binding: ActivityMainBinding
     // Объявляем переменную currentUser
     private var currentUser: UserEntity? = null
+    //Объявляем переменную для хранения объекта SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //инициализируем эту переменную binding
@@ -45,6 +49,13 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
         // указываем что он главный и получаем доступ ко всем id
         setContentView(binding.root)
 
+        // Инициализация SharedPreferences
+        sharedPreferences = getSharedPreferences("permissions", Context.MODE_PRIVATE)
+
+        // Проверяем состояние разрешения при каждом запуске приложения
+        if (sharedPreferences.getBoolean("read_external_storage", false)) {
+            setAvatar(currentUser?.avatar)
+        }
         // Инициализируем UserManager с контекстом приложения
         UserManager.init(applicationContext)
 
@@ -64,6 +75,25 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
 
         // Установка слушателя для нижней навигации
         setBottomNavListener()
+        // Проверяем и устанавливаем аватар пользователя
+        setAvatar(currentUser?.avatar)
+    }
+    fun setAvatar(avatar: String?) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Если разрешение не предоставлено, запросить его
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_CODE_READ_EXTERNAL_STORAGE
+            )
+        } else {
+            // Разрешение уже предоставлено, выполнить необходимые действия
+            loadAvatarFromUri(avatar)
+        }
     }
     // Функция для получения имени пользователя из базы данных
     private suspend fun getNameFromDb(): String? {
@@ -182,17 +212,23 @@ class MainActivity : AppCompatActivity(), FragmentTitleListener, ImageClickListe
             .commit()
     }
 //--------------------------------------------------------------------------------------------------
-fun setAvatar(avatar: String?) {
-    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED) {
-        // Если разрешение не предоставлено, запросить его
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            REQUEST_CODE_READ_EXTERNAL_STORAGE
-        )
-    } else {
-        // Разрешение уже предоставлено, выполнить необходимые действия
-        loadAvatarFromUri(avatar)
+override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == REQUEST_CODE_READ_EXTERNAL_STORAGE) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Разрешение на чтение внешнего хранилища предоставлено, сохраняем состояние разрешения
+            sharedPreferences.edit().putBoolean("read_external_storage", true).apply()
+            // Выводим фото из галереи
+            setAvatar(currentUser?.avatar)
+        } else {
+            // Разрешение не было предоставлено, сохраняем состояние разрешения как false
+            sharedPreferences.edit().putBoolean("read_external_storage", false).apply()
+            // Выполняем действия по обработке этой ситуации
+        }
     }
 }
     //--------------------------------------------------------------------------------------------------
@@ -211,7 +247,7 @@ fun setAvatar(avatar: String?) {
         // Проверяем, что name не null и не пустое
         name?.let { userName ->
             // Устанавливаем имя пользователя в TextView
-            binding.InfoMain.text = userName
+            binding.InfoMain.text =( "User:  $userName")
         }
     }
 
