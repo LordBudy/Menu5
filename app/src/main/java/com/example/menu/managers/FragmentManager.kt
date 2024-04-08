@@ -10,7 +10,7 @@ object FragmentManager {
     //переменная в которой хранится состояние последнего загруженного фрагмента
     lateinit var currentFrag: Fragment
 
-    //функция с помощью нее переключаем фрагменты
+    //с помощью этой функци переключаем фрагменты
     fun setFragment(newFrag: Fragment, activity: AppCompatActivity) {
         val transaction = activity.supportFragmentManager.beginTransaction()
         //с помощью replace заменяем содержимое Container_frag на newFrag
